@@ -1,0 +1,80 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "(gdb) ubertag",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "ace",
+            "args": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/english-ut.dat",
+                "-ubertagging=0.001",
+                "sentences.txt"
+            ],
+            "stopAtEntry": true,
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) no ubertag",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "ace",
+            "args": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/erg.dat",
+                "sentences.txt"
+            ],
+            "stopAtEntry": true,
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+        {
+            "name": "(gdb) compile ERG",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "ace",
+            "args": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/config.tdl",
+                "-G",
+                "/home/olga/delphin/erg/trunk/ace/erg.dat"
+            ],
+            "stopAtEntry": true,
+            "cwd": "/home/olga/delphin/my-ace/ace",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

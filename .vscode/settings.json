@@ -1,0 +1,53 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "name": "ubertagging",
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "binaryPath": "/home/olga/delphin/tools/ACE/my-ace/ace/ace",
+            "binaryArgs": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/english-ut.dat",
+                "sentences.txt",
+                "--ubertagging=0.001"
+            ]
+        },
+        {
+            "name": "no ubertagging",
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "binaryPath": "/home/olga/delphin/tools/ACE/my-ace/ace/ace",
+            "binaryArgs": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/erg.dat",
+                "sentences.txt"
+            ]
+        },
+        {
+            "name": "ACE compile grammmar",
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "binaryPath": "/home/olga/delphin/tools/ACE/my-ace/ace/ace",
+            "binaryArgs": [
+                "-g",
+                "/home/olga/delphin/erg/trunk/ace/config.tdl",
+                "-G",
+                "/home/olga/delphin/erg/trunk/ace/erg.dat"
+            ]
+        },
+        {
+            "cwd": "/home/olga/delphin/tools/ACE/my-ace/ace",
+            "binaryPath": "/home/olga/delphin/tools/ACE/my-ace/ace/ace",
+            "binaryArgs": []
+        }
+    ],
+    "makefile.configurations": [
+        {
+            "name": "Default",
+            "makeArgs": []
+        },
+        {
+            "name": "Print make version",
+            "makeArgs": [
+                "--version"
+            ]
+        },
+    ]
+}

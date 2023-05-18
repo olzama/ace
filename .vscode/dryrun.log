@@ -1,0 +1,241 @@
+make all --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/olga/delphin/my-ace/ace'
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lexicon.o lexicon.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o chart.o chart.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o dag.o dag.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o type.o type.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o tdl.o tdl.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o rule.o rule.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o morpho.o morpho.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o roots.o roots.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o freeze.o freeze.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o unify.o unify.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o qc.o qc.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o agenda.o agenda.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o net.o net.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o glb.o glb.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o semindex.o semindex.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o hash.o hash.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o mrs.o mrs.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o mrsvpm.o mrsvpm.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o mrsdg.o mrsdg.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o itsdb.o itsdb.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o pack.o pack.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o unpack.o unpack.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o maxent.o maxent.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o generate.o generate.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o parse.o parse.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lui.o lui.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o conf.o conf.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o preprocessor.o preprocessor.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o treebank-control.o treebank-control.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o token.o token.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lattice-mapping.o lattice-mapping.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lexical-parse.o lexical-parse.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o generalize.o generalize.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o transfer.o transfer.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o transfer-result.o transfer-result.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o edge-vectors.o edge-vectors.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o forest-out.o forest-out.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o exunpack.o exunpack.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o semilattice.o semilattice.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o rebuild-th.o rebuild-th.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o compile-qc.o compile-qc.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o idiom.o idiom.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o yy.o yy.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lisp.o lisp.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o tnt.o tnt.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o tree.o tree.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o reconstruct.o reconstruct.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o arbiter.o arbiter.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o profiler.o profiler.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o qcparse.o qcparse.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o rule-use-model.o rule-use-model.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o ubertag.o ubertag.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o dublin.o dublin.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o licenses.o licenses.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o dag-provenance.o dag-provenance.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o semi.o semi.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o timeout.o timeout.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o csaw/csaw.o csaw/csaw.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o csaw/naive.o csaw/naive.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o csaw/normalize.o csaw/normalize.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o main.o main.c
+make -C post
+ 
+make[1]: Entering directory '/home/olga/delphin/my-ace/ace/post'
+gcc -O3 -g -fPIC -DUSE_HMM   -c -o train.o train.c
+gcc -O3 -g -fPIC -DUSE_HMM   -c -o words.o words.c
+ 
+gcc -O3 -g -fPIC -DUSE_HMM   -c -o tags.o tags.c
+gcc -O3 -g -fPIC -DUSE_HMM   -c -o hmm.o hmm.c
+ld -r -o post.o train.o words.o tags.o hmm.o
+make[1]: Leaving directory '/home/olga/delphin/my-ace/ace/post'
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o timer.o timer.c
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o linenoise.o linenoise.c
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST    -c -o lui-cli.o lui-cli.c
+gcc  -Wl,--export-dynamic -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  lexicon.o chart.o dag.o type.o tdl.o rule.o morpho.o roots.o freeze.o unify.o qc.o agenda.o net.o glb.o semindex.o hash.o mrs.o mrsvpm.o mrsdg.o itsdb.o pack.o unpack.o maxent.o generate.o parse.o lui.o conf.o preprocessor.o treebank-control.o token.o lattice-mapping.o lexical-parse.o generalize.o transfer.o transfer-result.o edge-vectors.o forest-out.o exunpack.o semilattice.o rebuild-th.o compile-qc.o idiom.o yy.o lisp.o tnt.o tree.o reconstruct.o arbiter.o profiler.o qcparse.o rule-use-model.o ubertag.o dublin.o licenses.o dag-provenance.o semi.o timeout.o csaw/csaw.o csaw/naive.o csaw/normalize.o main.o post/post.o timer.o linenoise.o lui-cli.o -o ace -Wl,-Bstatic -lutil -Wl,-Bdynamic	 -Wl,-Bstatic -lrepp -Wl,-Bdynamic -L /lingo/lkb/lib/linux.x86.64 -Wl,-Bstatic -litsdb -lpvm3 -Wl,-Bdynamic -lpthread -lm -Wl,-Bstatic -lboost_regex -lstdc++ -Wl,-Bdynamic -ldl
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c lexicon.c -o pic/lexicon.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c chart.c -o pic/chart.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c dag.c -o pic/dag.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c type.c -o pic/type.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c tdl.c -o pic/tdl.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c rule.c -o pic/rule.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c morpho.c -o pic/morpho.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c roots.c -o pic/roots.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c freeze.c -o pic/freeze.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c unify.c -o pic/unify.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c qc.c -o pic/qc.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c agenda.c -o pic/agenda.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c net.c -o pic/net.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c glb.c -o pic/glb.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c semindex.c -o pic/semindex.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c hash.c -o pic/hash.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c mrs.c -o pic/mrs.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c mrsvpm.c -o pic/mrsvpm.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c mrsdg.c -o pic/mrsdg.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c itsdb.c -o pic/itsdb.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c pack.c -o pic/pack.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c unpack.c -o pic/unpack.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c maxent.c -o pic/maxent.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c generate.c -o pic/generate.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c parse.c -o pic/parse.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c lui.c -o pic/lui.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c conf.c -o pic/conf.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c preprocessor.c -o pic/preprocessor.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c treebank-control.c -o pic/treebank-control.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c token.c -o pic/token.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c lattice-mapping.c -o pic/lattice-mapping.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c lexical-parse.c -o pic/lexical-parse.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c generalize.c -o pic/generalize.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c transfer.c -o pic/transfer.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c transfer-result.c -o pic/transfer-result.o
+mkdir -p pic pic/csaw
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c edge-vectors.c -o pic/edge-vectors.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c forest-out.c -o pic/forest-out.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c exunpack.c -o pic/exunpack.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c semilattice.c -o pic/semilattice.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c rebuild-th.c -o pic/rebuild-th.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c compile-qc.c -o pic/compile-qc.o
+mkdir -p pic pic/csaw
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c idiom.c -o pic/idiom.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c yy.c -o pic/yy.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c lisp.c -o pic/lisp.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c tnt.c -o pic/tnt.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c tree.c -o pic/tree.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c reconstruct.c -o pic/reconstruct.o
+mkdir -p pic pic/csaw
+ 
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c arbiter.c -o pic/arbiter.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c profiler.c -o pic/profiler.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c qcparse.c -o pic/qcparse.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c rule-use-model.c -o pic/rule-use-model.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c ubertag.c -o pic/ubertag.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c dublin.c -o pic/dublin.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c licenses.c -o pic/licenses.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c dag-provenance.c -o pic/dag-provenance.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c semi.c -o pic/semi.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c timeout.c -o pic/timeout.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c csaw/csaw.c -o pic/csaw/csaw.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c csaw/naive.c -o pic/csaw/naive.o
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c csaw/normalize.c -o pic/csaw/normalize.o
+ 
+mkdir -p pic pic/csaw
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fPIC -c libace.c -o pic/libace.o
+mkdir -p pic
+gcc -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops  -isystem /lingo/lkb/include -DTSDB -I post/ -DPOST  -fvisibility=hidden -fPIC -c timer.c -o pic/timer.o
+ 
+rm -f libace.so
+gcc -shared pic/lexicon.o pic/chart.o pic/dag.o pic/type.o pic/tdl.o pic/rule.o pic/morpho.o pic/roots.o pic/freeze.o pic/unify.o pic/qc.o pic/agenda.o pic/net.o pic/glb.o pic/semindex.o pic/hash.o pic/mrs.o pic/mrsvpm.o pic/mrsdg.o pic/itsdb.o pic/pack.o pic/unpack.o pic/maxent.o pic/generate.o pic/parse.o pic/lui.o pic/conf.o pic/preprocessor.o pic/treebank-control.o pic/token.o pic/lattice-mapping.o pic/lexical-parse.o pic/generalize.o pic/transfer.o pic/transfer-result.o pic/edge-vectors.o pic/forest-out.o pic/exunpack.o pic/semilattice.o pic/rebuild-th.o pic/compile-qc.o pic/idiom.o pic/yy.o pic/lisp.o pic/tnt.o pic/tree.o pic/reconstruct.o pic/arbiter.o pic/profiler.o pic/qcparse.o pic/rule-use-model.o pic/ubertag.o pic/dublin.o pic/licenses.o pic/dag-provenance.o pic/semi.o pic/timeout.o pic/csaw/csaw.o pic/csaw/naive.o pic/csaw/normalize.o pic/libace.o pic/timer.o post/post.o -Wl,-soname,libace.so -o libace.so -lrepp -L /lingo/lkb/lib/linux.x86.64 -Wl,-Bstatic -litsdb -lpvm3 -Wl,-Bdynamic -ldl -lutil
+rm -f libace.a
+ 
+ar cru libace.a pic/lexicon.o pic/chart.o pic/dag.o pic/type.o pic/tdl.o pic/rule.o pic/morpho.o pic/roots.o pic/freeze.o pic/unify.o pic/qc.o pic/agenda.o pic/net.o pic/glb.o pic/semindex.o pic/hash.o pic/mrs.o pic/mrsvpm.o pic/mrsdg.o pic/itsdb.o pic/pack.o pic/unpack.o pic/maxent.o pic/generate.o pic/parse.o pic/lui.o pic/conf.o pic/preprocessor.o pic/treebank-control.o pic/token.o pic/lattice-mapping.o pic/lexical-parse.o pic/generalize.o pic/transfer.o pic/transfer-result.o pic/edge-vectors.o pic/forest-out.o pic/exunpack.o pic/semilattice.o pic/rebuild-th.o pic/compile-qc.o pic/idiom.o pic/yy.o pic/lisp.o pic/tnt.o pic/tree.o pic/reconstruct.o pic/arbiter.o pic/profiler.o pic/qcparse.o pic/rule-use-model.o pic/ubertag.o pic/dublin.o pic/licenses.o pic/dag-provenance.o pic/semi.o pic/timeout.o pic/csaw/csaw.o pic/csaw/naive.o pic/csaw/normalize.o pic/libace.o pic/timer.o post/post.o
+ranlib libace.a
+make: Leaving directory '/home/olga/delphin/my-ace/ace'
+ 
