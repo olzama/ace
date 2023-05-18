@@ -1,0 +1,277 @@
+#!/bin/bash
+
+#
+# a first shot at automating an install of several of the DELPH-IN open-source
+# packages, the so-called LinGO builds.  specifically:
+#
+# - the Linguistic Knowledge Builder (LKB);
+# - the LinGO English Resource Grammar (ERG);
+# - the Grammar Matrix, a grammar development starter kit;
+# - the [incr tsdb()] (aka `tee ess dee bee plus plus') profiler;
+# - the Redwoods HPSG treebank in [incr tsdb()] form (optionally).
+#
+# others (e.g. PET, maybe more grammars) to follow.  for now, this is a rough
+# script intended to give people an idea of how to do an installation; i have
+# mostly tested it on Linux and Solaris, although Windoze plus the open-source
+# CygWin package (a Un*x-like add-on set of tools for Windoze) should work.
+#                                                              (9-nov-04; oe)
+
+
+#
+# the root directory for the DELPH-IN installation; everything else will end up
+# in sub-directories of $DELPHINHOME.  the default is a directory `delphin' in
+# the user home directory.
+#
+if [ -z "${DELPHINHOME}" ]; then
+  DELPHINHOME=${HOME}/delphin
+fi
+
+#
+# for the script to be independent of where specific OS versions keep their
+# files (e.g. on some Solaris boxes one might have to use `gtar' for a decent
+# GNU tar(1)).
+#
+# _fix_me_
+# come to think of it, we should probably use gunzip(1) plus tar(1) instead,
+# so as to not be dogmatic and even succeed with a Sun tar(1).  (9-nov-04; oe)
+#
+URL=http://lingo.delph-in.net
+MKDIR=mkdir
+LS=ls
+RM=rm
+LN="ln -s"
+GREP=grep
+WGET="wget --quiet --timestamping"
+GUNZIP="gunzip -c"
+TAR="tar xf -"
+SED=sed
+
+build="latest"
+
+#
+# process command-line options; for now, either set root directory and toggle
+# inclusion of Redwoods data (off by default).
+#
+while [ $# -gt 0 ]; do
+  case ${1} in
+    -h|--home)
+      DELPHINHOME=${2};
+      shift 2;
+    ;;
+    -s|--stable)
+      build="stable";
+      WGET="wget --quiet";
+      shift 1;
+    ;;
+    -t|--test)
+      build="test";
+      WGET="wget --quiet";
+      shift 1;
+    ;;
+    -r|--redwoods)
+      TSDBHOME=${DELPHINHOME}/lkb/src/tsdb/home;
+      shift 1;
+    ;;
+    -j|--jacy)
+      JACY="http://www.delph-in.net/jacy/japanese.tar.gz"
+      shift;
+    ;;
+    *)
+      echo "install: invalid parameter \`${1}'.";
+      exit 1;
+    ;;
+  esac
+done
+
+#
+# create the target directory, unless it exists already.  if the target exists
+# as a non-directory (e.g. plain file), then stop here.
+#
+if [ ! -d ${DELPHINHOME} -a -e ${DELPHINHOME} ]; then
+  echo "install: \`${DELPHINHOME}' exists as a non-directory."
+  exit 1;
+fi
+[ -d ${DELPHINHOME} ] || ${MKDIR} ${DELPHINHOME}
+
+#
+# next, determine the current operating system, one of `linux' (x86), `solaris'
+# (sparc), or `windows' (x86); anything else will require manual installation.
+#
+if [ "$OSTYPE" = "linux" -o "$OSTYPE" = "linux-gnu" ]; then
+  #
+  # apparently, (some) Debian installations come with an older uname(1), where
+  # `-i' is not available :-{.                                 (11-mar-05; oe)
+  #
+  if uname -i > /dev/null 2>&1; then
+    cpu=$(uname -i)
+    if [ "${cpu}" = "unknown" ]; then cpu=$(uname -m); fi
+  else
+    cpu=$(uname -m)
+  fi
+  case "${cpu}" in
+    i?86|x86_64)
+      os="linux.x86.32"
+      ;;
+    *)
+      echo "lkb: unknown Linux architecture (check \`uname -m'); exit."
+      exit 1;
+  esac
+elif [ "$OSTYPE" = "solaris" -o "${OSTYPE%%?.?}" = "solaris" ]; then
+  os="solaris";
+elif [ "$OSTYPE" = "cygwin" ]; then
+  os="windows";
+fi
+
+#
+# for the LKB, make sure there is a temporary directory available.
+#
+if [ "${os%%.*}" == "linux" -o "$os" == "solaris" ]; then
+  [ -d ${HOME}/tmp ] || ${MKDIR} ${HOME}/tmp;
+fi
+
+#
+# now, obtain all the installation archives, defaulting to the latest version
+# for those packages distributed from the LinGO server at CSLI.
+#
+cd ${DELPHINHOME}
+
+[ -d ${DELPHINHOME}/Archives ] || ${MKDIR} ${DELPHINHOME}/Archives
+[ -d ${DELPHINHOME}/lkb ] || ${MKDIR} ${DELPHINHOME}/lkb
+[ -d ${DELPHINHOME}/bin ] || ${MKDIR} ${DELPHINHOME}/bin
+
+for i in lkb_data.tgz lkb_${os}.tgz lkb_source.tgz; do
+  echo -n "install: \`${i}' ...";
+  ( cd Archives; ${WGET} ${URL}/${build}/${i}; )
+  if [ -f Archives/${i} ]; then
+    ( cd lkb; ${GUNZIP} ${DELPHINHOME}/Archives/${i} | ${TAR}; )
+    echo " done.";
+  else
+    echo " missing.";
+  fi
+  if [ -f ${DELPHINHOME}/lkb/etc/lkb ]; then
+    [ -f ${DELPHINHOME}/bin/lkb ] && ${RM} ${DELPHINHOME}/bin/lkb;
+    ${LN} ${DELPHINHOME}/lkb/etc/lkb ${DELPHINHOME}/bin/lkb;
+  fi
+done
+
+#
+# the [incr tsdb()] software, for now, is only available on Linux and Solaris
+# and shares a source directory with the LKB
+#
+if [ "${os%%.*}" == "linux" -o "$os" == "solaris" ]; then
+  for i in itsdb_libraries.tgz itsdb_capi.tgz \
+           itsdb_${os}.tgz itsdb_data.tgz itsdb_documentation.tgz \
+           itsdb_source.tgz; do
+    echo -n "install: \`${i}' ...";
+    ( cd Archives; ${WGET} ${URL}/${build}/${i}; )
+    ( cd lkb; ${GUNZIP} ${DELPHINHOME}/Archives/${i} | ${TAR}; )
+    if [ -f Archives/${i} ]; then
+      ( cd lkb; ${GUNZIP} ${DELPHINHOME}/Archives/${i} | ${TAR}; )
+      echo " done.";
+    else
+      echo " missing.";
+    fi
+  done
+fi
+
+#
+# for integration of the LKB et al. with emacs(1), we need the following
+#
+echo -n "install: \`eli.tgz' ...";
+( cd Archives; ${WGET} ${URL}/etc/eli.tgz )
+${GUNZIP} ${DELPHINHOME}/Archives/eli.tgz | ${TAR}
+echo " done.";
+
+#
+# finally, the English Resource Grammar
+#
+for i in erg.tgz; do
+  echo -n "install: \`${i}' ...";
+  ( cd Archives; ${WGET} ${URL}/${build}/${i}; )
+  if [ -f Archives/${i} ]; then
+    ( cd ${DELPHINHOME}; ${GUNZIP} ${DELPHINHOME}/Archives/${i} | ${TAR}; )
+    echo " done.";
+  else
+    echo " missing.";
+  fi
+done
+
+#
+# some grammars remain optional packages, for right now.
+#
+if [ -n "${JACY}" ]; then
+  echo -n "install: \`japanese.tar.gz' ...";
+  ( cd Archives; ${WGET} -O japanese.tgz ${JACY}; )
+  ${GUNZIP} ${DELPHINHOME}/Archives/japanese.tgz | ${TAR};
+  echo " done.";
+fi
+
+#
+#
+# on demand, also get the Redwoods treebanks and corresponding versions of the 
+# ERG; by default, only get the latest growth (currently the fifth).
+#
+if [ -n "${TSDBHOME}" ]; then
+  echo -n "install: \`erg.jan-06.tgz' ...";
+  ( cd Archives; ${WGET} http://redwoods.stanford.edu/ftp/6th/erg.jan-06.tgz; )
+  ${GUNZIP} ${DELPHINHOME}/Archives/erg.jan-06.tgz | ${TAR};
+  echo " done.";
+  for i in vm ec jh; do
+    file="itsdb_${i}.tgz"
+    echo -n "install: \`${file}' ...";
+    ( \
+      cd Archives; \
+      ${WGET} http://redwoods.stanford.edu/ftp/6th/${file}; \
+      if [ -f ${file} ]; then \
+        cd ${TSDBHOME}; \
+        ${GUNZIP} ${DELPHINHOME}/Archives/${file} | ${TAR}; \
+        echo " done."; \
+      else \
+        echo " missing."; \
+      fi; \
+    )
+  done
+fi
+
+#
+# on Linux, we need to make sure that a (good) version of the Motif library is
+# available for the LKB; unless we find one in `/usr/X11R6/lib' that looks as
+# if it were right, install our own and suggest to the user that they tell
+# their shell how to find it.  this all is a little iffy ...
+#
+if [ false -a "${os}" == "linux.x86.32" ]; then
+  if [ -e /usr/X11R6/lib/libXm.so.2 ]; then
+    link=$(${LS} -l /usr/X11R6/lib/libXm.so.2 | grep -i "lesstif")
+    if [ -n "${link}" ]; then
+      echo
+      echo "most likely the Motif library \`/usr/X11R6/lib/libXm.so.2' is not"
+      echo "suitable for the LKB; un-install LessTiff and install OpenMotif."
+      echo
+      sleep 5;
+    fi
+  fi
+fi
+
+#
+# finally, instruct users on how to set-up their local start-up files
+#
+echo
+echo "add the following to the file \`~/.bashrc' in your home directory:"
+echo
+echo "  export DELPHINHOME=${DELPHINHOME}"
+echo 
+echo "to permanently record the root directory of your DELPH-IN installation;"
+echo "if you are a (t)csh(1) user, use \`setenv' rather than \`export'; e.g."
+echo 
+echo "  setenv DELPHINHOME ${DELPHINHOME}"
+echo
+echo "in the file \`~/.cshrc' (or \`~/.tcshrc') in your home directory."
+echo
+echo "to run the LKB and [incr tsdb()] from within emacs(1), add the following"
+echo "to the file \`.emacs' in your home directory:"
+echo
+echo "  (let ((root (or (getenv \"DELPHINHOME\")"
+echo "                  \"${DELPHINHOME}\")))" 
+echo "    (if (file-exists-p (format \"%s/lkb/etc/dot.emacs\" root))"
+echo "      (load (format \"%s/lkb/etc/dot.emacs\" root) nil t t)))"
+echo

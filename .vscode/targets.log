@@ -1,0 +1,1826 @@
+make all --print-data-base --no-builtin-variables --no-builtin-rules --question
+# GNU Make 4.2.1
+# Built for x86_64-pc-linux-gnu
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+# This is free software: you are free to change and redistribute it.
+# There is NO WARRANTY, to the extent permitted by law.
+
+# Make data base, printed on Sat Jul 23 01:02:53 2022
+
+# Variables
+
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# automatic
+?F = $(notdir $?)
+# default
+.SHELLFLAGS := -c
+# makefile (from 'Makefile', line 35)
+OBJ = lexicon.o chart.o dag.o type.o tdl.o rule.o morpho.o roots.o freeze.o unify.o qc.o agenda.o net.o glb.o semindex.o hash.o mrs.o mrsvpm.o mrsdg.o itsdb.o pack.o unpack.o maxent.o generate.o parse.o lui.o conf.o preprocessor.o treebank-control.o token.o lattice-mapping.o lexical-parse.o generalize.o transfer.o transfer-result.o edge-vectors.o forest-out.o exunpack.o semilattice.o rebuild-th.o compile-qc.o idiom.o yy.o lisp.o tnt.o tree.o reconstruct.o arbiter.o profiler.o qcparse.o rule-use-model.o ubertag.o dublin.o licenses.o dag-provenance.o semi.o timeout.o csaw/csaw.o csaw/naive.o csaw/normalize.o
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AGENT_FOLDER = /home/olga/.vscode-server
+# environment
+XDG_SESSION_TYPE = tty
+# makefile (from 'Makefile', line 4)
+DELPHIN_CFLAGS = -isystem ${LOGONROOT}/lingo/lkb/include -DTSDB
+# environment
+VSCODE_LOG_NATIVE = false
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# automatic
+@F = $(notdir $@)
+# default
+MAKE_VERSION := 4.2.1
+# makefile
+CURDIR := /home/olga/delphin/my-ace/ace
+# makefile
+SHELL = /bin/sh
+# makefile (from 'Makefile', line 5)
+DELPHIN_LIBS = -L ${LOGONROOT}/lingo/lkb/lib/linux.x86.64 -Wl,-Bstatic -litsdb -lpvm3 -Wl,-Bdynamic
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en","availableLanguages":{}}
+# environment
+_ = /home/olga/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/node
+# makefile (from 'Makefile', line 33)
+CFLAGS = -g -O0 -fno-omit-frame-pointer -funsigned-char -falign-loops=32 -funroll-loops ${CPU} ${DELPHIN_CFLAGS} ${POST_CFLAGS} ${REPP_CFLAGS}
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+MAKELEVEL := 0
+# environment
+XDG_DATA_DIRS = /usr/local/share:/usr/share:/var/lib/snapd/desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
+# environment
+DELPHINHOME = /home/olga/delphin
+# environment
+VSCODE_VERBOSE_LOGGING = true
+# environment
+LC_NAME = es_ES.UTF-8
+# environment
+VSCODE_CWD = /home/olga
+# environment
+SSH_CONNECTION = 10.29.18.68 50955 10.68.58.20 22
+# environment
+PATH = /home/olga/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/remote-cli:/usr/bin/yzlui:/usr/bin/yzlui:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+# environment
+XDG_RUNTIME_DIR = /run/user/1001
+# environment
+VSCODE_LOG_STACK = false
+# environment
+LC_NUMERIC = es_ES.UTF-8
+# environment
+VSCODE_IPC_HOOK_CLI = /run/user/1001/vscode-ipc-9506460a-079e-4e93-95d6-e0dfe9ce6c0f.sock
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_PIPE_LOGGING = true
+# environment
+PWD = /home/olga/delphin/my-ace/ace
+# default
+.LOADED := 
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/olga
+# environment
+LD_LIBRARY_PATH = /home/olga/delphin/lkb_fos/lib/linux.x86.64:/home/olga/delphin/lkb_fos/lib/linux.x86.64:
+# environment
+LOGNAME = olga
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
+# automatic
++F = $(notdir $+)
+# makefile (from 'Makefile', line 39)
+APPOBJ = ${OBJ} main.o post/post.o timer.o linenoise.o lui-cli.o
+# makefile (from 'Makefile', line 1)
+PREFIX = /usr/local
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# makefile (from 'Makefile', line 37)
+PICOBJS = $(patsubst %,pic/%,${OBJ} libace.o)
+# environment
+LC_TIME = es_ES.UTF-8
+# default
+MAKE = $(MAKE_COMMAND)
+# default
+MAKECMDGOALS := all
+# environment
+SHLVL = 1
+# makefile (from 'Makefile', line 16)
+CC = gcc
+# makefile (from 'Makefile', line 10)
+REPP_LIBS = -Wl,-Bstatic -lrepp -Wl,-Bdynamic
+# environment
+XDG_SESSION_ID = 61
+# environment
+USER = olga
+# environment
+LC_MONETARY = es_ES.UTF-8
+# makefile
+.DEFAULT_GOAL := all
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+LC_TELEPHONE = es_ES.UTF-8
+# default
+MAKE_COMMAND := make
+# default
+.VARIABLES := 
+# automatic
+*F = $(notdir $*)
+# makefile
+MAKEFLAGS = pqrR
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_CLIENT = 10.29.18.68 50955 22
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# makefile (from 'Makefile', line 7)
+POST_CFLAGS = -I post/ -DPOST
+# environment
+BROWSER = /home/olga/.vscode-server/bin/30d9c6cd9483b2cc586687151bcbcd635f373630/bin/helpers/browser.sh
+# environment
+VSCODE_HANDLES_SIGPIPE = true
+# makefile (from 'Makefile', line 8)
+POST_LIBS = -Wl,-Bstatic -lutil -Wl,-Bdynamic	
+# default
+MAKEFILES := 
+# automatic
+<F = $(notdir $<)
+# makefile (from 'Makefile', line 13)
+BOOST_REGEX_LIBS = -Wl,-Bstatic -lboost_regex -lstdc++ -Wl,-Bdynamic
+# automatic
+^F = $(notdir $^)
+# environment
+LC_MEASUREMENT = es_ES.UTF-8
+# environment
+LC_ALL = C
+# environment
+LC_PAPER = es_ES.UTF-8
+# default
+SUFFIXES := 
+# makefile (from 'Makefile', line 29)
+EXPORT_DYNAMIC_CFLAG = -Wl,--export-dynamic
+# default
+.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+# environment
+LC_IDENTIFICATION = es_ES.UTF-8
+# makefile (from 'Makefile', line 38)
+HIDDENPICOBJS = pic/timer.o
+# default
+.RECIPEPREFIX := 
+# environment
+LUI = /usr/bin/yzlui
+# environment
+LC_ADDRESS = es_ES.UTF-8
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+LANG = C
+# environment
+VSCODE_EXTHOST_WILL_SEND_SOCKET = true
+# environment
+MOTD_SHOWN = pam
+# variable set hash-table stats:
+# Load=93/1024=9%, Rehash=0, Collisions=19/133=14%
+
+# Pattern-specific Variable Values
+
+# No pattern-specific variable values.
+
+# Directories
+
+# . (device 66306, inode 16254118): 183 files, no impossibilities.
+
+# 183 files, no impossibilities in 1 directories.
+
+# Implicit Rules
+
+# No implicit rules.
+
+# Files
+
+# Not a target:
+morpho.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-02-11 19:56:49
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+semilattice.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-09-14 19:26:07
+#  File has been updated.
+#  Successfully updated.
+
+pic/token.o: token.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'token'
+#  Last modified 2022-02-10 16:15:11.184816611
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/dublin.o: dublin.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'dublin'
+#  Last modified 2022-02-10 16:15:12.200820292
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+rebuild-th.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.044805242
+#  File has been updated.
+#  Successfully updated.
+
+pic/rebuild-th.o: rebuild-th.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'rebuild-th'
+#  Last modified 2022-02-10 16:15:11.696818466
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+freeze.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.396799277
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+maxent.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.152802013
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lisp.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.164805676
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+rule.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.220798641
+#  File has been updated.
+#  Successfully updated.
+
+pic/rule.o: rule.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'rule'
+#  Last modified 2022-02-10 16:15:09.832811715
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+dag-provenance.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 19:30:44
+#  File has been updated.
+#  Successfully updated.
+ 
+
+pic/parse.o: parse.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'parse'
+#  Last modified 2022-02-10 16:15:10.912815626
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+mrsdg.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-12-10 07:57:41
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+type.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-03-24 07:04:50
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+mrsvpm.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-13 06:00:21
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lattice-mapping.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-11-21 20:38:17
+#  File has been updated.
+#  Successfully updated.
+
+pic/semilattice.o: semilattice.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'semilattice'
+#  Last modified 2022-02-10 16:15:11.668818365
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/qcparse.o: qcparse.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'qcparse'
+#  Last modified 2022-02-10 16:15:12.060819784
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+pack.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.008801492
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+roots.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 19:30:44
+#  File has been updated.
+#  Successfully updated.
+
+all: ace libace.so libace.a
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Successfully updated.
+
+pic/profiler.o: profiler.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'profiler'
+#  Last modified 2022-02-10 16:15:11.996819552
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+net.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.592799987
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+itsdb.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-05-15 20:08:25
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+ubertag.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.504806907
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+timeout.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-04-18 00:44:16
+#  File has been updated.
+#  Successfully updated.
+
+pic/itsdb.o: itsdb.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'itsdb'
+#  Last modified 2022-02-10 16:15:10.592814467
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+hash.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-07-10 03:58:37
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+qcparse.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.40080653
+#  File has been updated.
+#  Successfully updated.
+
+pic/conf.o: conf.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'conf'
+#  Last modified 2022-02-10 16:15:11.072816205
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/hash.o: hash.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'hash'
+#  Last modified 2022-02-10 16:15:10.33681354
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+tnt.c:
+#  Implicit rule search has been done.
+#  Last modified 2012-10-10 22:35:12
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parse.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.268802433
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+unpack.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.116801883
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+generalize.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.704804011
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+csaw/naive.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.764807848
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+arbiter.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-03-24 06:30:33
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+semi.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.632807371
+#  File has been updated.
+#  Successfully updated.
+
+pic/generate.o: generate.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'generate'
+#  Last modified 2022-02-10 16:15:10.84481538
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+lexical-parse.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-11-25 07:24:01
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+chart.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:05.948797656
+#  File has been updated.
+#  Successfully updated.
+
+pic/glb.o: glb.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'glb'
+#  Last modified 2022-02-10 16:15:10.244813207
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/mrs.o: mrs.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'mrs'
+#  Last modified 2022-02-10 16:15:10.432813888
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+arbiter.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.312806212
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+profiler.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.336806299
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+dublin.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-05-04 00:58:31
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+timer.c:
+#  Implicit rule search has been done.
+#  Last modified 2013-02-06 01:55:44
+#  File has been updated.
+#  Successfully updated.
+
+pic/dag-provenance.o: dag-provenance.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'dag-provenance'
+#  Last modified 2022-02-10 16:15:12.260820509
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+licenses.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.548807066
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+tdl.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-08-07 09:24:58
+#  File has been updated.
+#  Successfully updated.
+
+pic/agenda.o: agenda.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'agenda'
+#  Last modified 2022-02-10 16:15:10.196813033
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/preprocessor.o: preprocessor.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'preprocessor'
+#  Last modified 2022-02-10 16:15:11.096816292
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+Makefile:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 14:48:29.316035788
+#  File has been updated.
+#  Successfully updated.
+
+pic/type.o: type.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'type'
+#  Last modified 2022-02-10 16:15:09.660811092
+#  File has been updated.
+ 
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+semindex.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.676800291
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+unify.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-12-10 07:57:41
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lui.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-05-15 20:08:25
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lui-cli.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:09.300809788
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+qc.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-09-12 02:35:00
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+libace.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-06-23 22:21:35
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+conf.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-07-23 08:06:58
+#  File has been updated.
+#  Successfully updated.
+
+pic/libace.o: libace.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'libace'
+#  Last modified 2022-02-10 16:15:12.472821277
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+agenda.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.5687999
+#  File has been updated.
+#  Successfully updated.
+
+pic/lexicon.o: lexicon.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'lexicon'
+#  Last modified 2022-02-10 16:15:09.488810469
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/tnt.o: tnt.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'tnt'
+#  Last modified 2022-02-10 16:15:11.852819031
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/csaw/naive.o: csaw/naive.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'csaw/naive'
+#  Last modified 2022-02-10 16:15:12.428821118
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+freeze.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-11-25 07:24:01
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+maxent.c:
+#  Implicit rule search has been done.
+#  Last modified 2021-01-21 19:10:51
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lisp.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-09-11 23:30:59
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+treebank-control.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.492803244
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+rule.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-02-11 09:46:38
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+conf.o:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-02-10 16:15:07.428803012
+#  File has been updated.
+#  Successfully updated.
+
+pic/chart.o: chart.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'chart'
+#  Last modified 2022-02-10 16:15:09.552810701
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+transfer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.820804431
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+mrs.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.80080074
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+dag.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.008797874
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+pack.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-05-15 21:18:21
+#  File has been updated.
+#  Successfully updated.
+
+pic/ubertag.o: ubertag.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'ubertag'
+#  Last modified 2022-02-10 16:15:12.168820176
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+csaw/csaw.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-05-15 22:03:13
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+token.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.536803403
+#  File has been updated.
+#  Successfully updated.
+
+static: lexicon.o chart.o dag.o type.o tdl.o rule.o morpho.o roots.o freeze.o unify.o qc.o agenda.o net.o glb.o semindex.o hash.o mrs.o mrsvpm.o mrsdg.o itsdb.o pack.o unpack.o maxent.o generate.o parse.o lui.o conf.o preprocessor.o treebank-control.o token.o lattice-mapping.o lexical-parse.o generalize.o transfer.o transfer-result.o edge-vectors.o forest-out.o exunpack.o semilattice.o rebuild-th.o compile-qc.o idiom.o yy.o lisp.o tnt.o tree.o reconstruct.o arbiter.o profiler.o qcparse.o rule-use-model.o ubertag.o dublin.o licenses.o dag-provenance.o semi.o timeout.o csaw/csaw.o csaw/naive.o csaw/normalize.o main.o post/post.o timer.o linenoise.o lui-cli.o
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 47):
+	${CC} -Wl,--dynamic-list=dylist.txt ${CFLAGS} ${APPOBJ} -Wl,-Bstatic -static ${POST_LIBS} ${REPP_LIBS} ${DELPHIN_LIBS} -static -lpthread -lm -L ~/local/lib/ -lboost_regex -lstdc++ -la -ldl -o ace.static
+
+pic/timeout.o: timeout.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'timeout'
+#  Last modified 2022-02-10 16:15:12.320820726
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+linenoise.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:09.268809672
+#  File has been updated.
+#  Successfully updated.
+
+pic/timer.o: timer.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'timer'
+#  Last modified 2022-01-18 16:37:31.898936804
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 57):
+	mkdir -p pic
+	${CC} ${CFLAGS} -fvisibility=hidden -fPIC -c $< -o $@
+
+# Not a target:
+net.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-04-25 07:24:52
+#  File has been updated.
+#  Successfully updated.
+
+pic/morpho.o: morpho.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'morpho'
+#  Last modified 2022-02-10 16:15:09.920812035
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/csaw/csaw.o: csaw/csaw.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'csaw/csaw'
+#  Last modified 2022-02-10 16:15:12.356820857
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/tdl.o: tdl.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'tdl'
+#  Last modified 2022-02-10 16:15:09.760811454
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/unpack.o: unpack.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'unpack'
+#  Last modified 2022-02-10 16:15:10.752815047
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+post/post.o:
+#  Implicit rule search has not been done.
+#  Last modified 2022-02-10 16:15:09.192809398
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 50):
+	${MAKE} -C post
+
+pic/semindex.o: semindex.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'semindex'
+#  Last modified 2022-02-10 16:15:10.304813424
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+ubertag.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:14:57.436766889
+#  File has been updated.
+#  Successfully updated.
+
+pic/arbiter.o: arbiter.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'arbiter'
+#  Last modified 2022-02-10 16:15:11.972819466
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+csaw/csaw.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.692807587
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+qcparse.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 20:44:44
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+generate.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.204802201
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+glb.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.616800073
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parse.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-07-09 21:36:12
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+unpack.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-12-10 07:55:00
+#  File has been updated.
+#  Successfully updated.
+
+pic/mrsdg.o: mrsdg.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'mrsdg'
+#  Last modified 2022-02-10 16:15:10.536814264
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+csaw/naive.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-06-28 23:57:44
+#  File has been updated.
+#  Successfully updated.
+
+pic/treebank-control.o: treebank-control.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'treebank-control'
+#  Last modified 2022-02-10 16:15:11.136816437
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/mrsvpm.o: mrsvpm.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'mrsvpm'
+#  Last modified 2022-02-10 16:15:10.480814063
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/lattice-mapping.o: lattice-mapping.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'lattice-mapping'
+#  Last modified 2022-02-10 16:15:11.288816988
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+semi.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-03-24 07:04:50
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lexicon.o:
+#  Implicit rule search has been done.
+ 
+#  Last modified 2022-02-10 16:15:05.884797425
+#  File has been updated.
+#  Successfully updated.
+
+pic/semi.o: semi.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'semi'
+#  Last modified 2022-02-10 16:15:12.296820639
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+compile-qc.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.072805343
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+edge-vectors.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.904804735
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+chart.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-07-15 01:36:04
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+reconstruct.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.280806096
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.DEFAULT:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+pic/reconstruct.o: reconstruct.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'reconstruct'
+#  Last modified 2022-02-10 16:15:11.94081935
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/transfer-result.o: transfer-result.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'transfer-result'
+#  Last modified 2022-02-10 16:15:11.524817844
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+profiler.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-04-22 01:35:41
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+yy.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.136805575
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+licenses.c:
+#  Implicit rule search has been done.
+#  Last modified 2022-01-19 16:44:27.852928563
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+tree.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.232805923
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+tree.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-08-07 17:14:26
+#  File has been updated.
+#  Successfully updated.
+
+libace.a: pic/lexicon.o pic/chart.o pic/dag.o pic/type.o pic/tdl.o pic/rule.o pic/morpho.o pic/roots.o pic/freeze.o pic/unify.o pic/qc.o pic/agenda.o pic/net.o pic/glb.o pic/semindex.o pic/hash.o pic/mrs.o pic/mrsvpm.o pic/mrsdg.o pic/itsdb.o pic/pack.o pic/unpack.o pic/maxent.o pic/generate.o pic/parse.o pic/lui.o pic/conf.o pic/preprocessor.o pic/treebank-control.o pic/token.o pic/lattice-mapping.o pic/lexical-parse.o pic/generalize.o pic/transfer.o pic/transfer-result.o pic/edge-vectors.o pic/forest-out.o pic/exunpack.o pic/semilattice.o pic/rebuild-th.o pic/compile-qc.o pic/idiom.o pic/yy.o pic/lisp.o pic/tnt.o pic/tree.o pic/reconstruct.o pic/arbiter.o pic/profiler.o pic/qcparse.o pic/rule-use-model.o pic/ubertag.o pic/dublin.o pic/licenses.o pic/dag-provenance.o pic/semi.o pic/timeout.o pic/csaw/csaw.o pic/csaw/naive.o pic/csaw/normalize.o pic/libace.o pic/timer.o post/post.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-02-10 16:15:12.524821466
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 66):
+	rm -f libace.a
+	ar cru libace.a ${PICOBJS} ${HIDDENPICOBJS} post/post.o
+	ranlib libace.a
+
+# Not a target:
+semindex.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-03-10 01:19:21
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+csaw/normalize.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-05-04 00:24:22
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+morpho.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.304798945
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+semilattice.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.020805155
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+unify.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.492799625
+#  File has been updated.
+#  Successfully updated.
+
+pic/csaw/normalize.o: csaw/normalize.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'csaw/normalize'
+#  Last modified 2022-02-10 16:15:12.44882119
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/idiom.o: idiom.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'idiom'
+#  Last modified 2022-02-10 16:15:11.752818669
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+clean:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 78):
+	rm -f ${OBJ} ${APPOBJ} ace ace.static
+	rm -f libace.a libace.so
+	rm -f ${PICOBJS}
+	make -C post clean
+
+# Not a target:
+dublin.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.536807022
+#  File has been updated.
+#  Successfully updated.
+
+pic/lexical-parse.o: lexical-parse.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'lexical-parse'
+#  Last modified 2022-02-10 16:15:11.324817118
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+dag-provenance.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.59680724
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+csaw/normalize.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.780807906
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+agenda.c:
+#  Implicit rule search has been done.
+#  Last modified 2013-09-05 01:08:54
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+mrsdg.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.904801116
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+type.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.056798047
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+mrsvpm.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.848800913
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lattice-mapping.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.640803779
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+treebank-control.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 20:44:44
+#  File has been updated.
+#  Successfully updated.
+
+pic/forest-out.o: forest-out.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'forest-out'
+#  Last modified 2022-02-10 16:15:11.588818074
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/dag.o: dag.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'dag'
+#  Last modified 2022-02-10 16:15:09.612810918
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+roots.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.348799104
+#  File has been updated.
+ 
+#  Successfully updated.
+
+pic/roots.o: roots.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'roots'
+#  Last modified 2022-02-10 16:15:09.968812207
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+exunpack.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.972804981
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+transfer.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-10-30 06:45:10
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+mrs.c:
+#  Implicit rule search has been done.
+#  Last modified 2020-02-11 09:46:38
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+dag.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-11-25 07:24:01
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+idiom.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-05-04 00:58:31
+#  File has been updated.
+#  Successfully updated.
+
+pic/freeze.o: freeze.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'freeze'
+#  Last modified 2022-02-10 16:15:10.020812396
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+token.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-11-14 01:16:53
+#  File has been updated.
+#  Successfully updated.
+
+pic/lui.o: lui.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'lui'
+#  Last modified 2022-02-10 16:15:11.024816032
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+timeout.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.652807443
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+hash.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.704800392
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+main.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.840808123
+#  File has been updated.
+#  Successfully updated.
+
+pic/rule-use-model.o: rule-use-model.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'rule-use-model'
+#  Last modified 2022-02-10 16:15:12.0928199
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+tnt.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.196805792
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+rule-use-model.c:
+#  Implicit rule search has been done.
+#  Last modified 2013-08-22 02:23:03
+#  File has been updated.
+#  Successfully updated.
+
+pic/tree.o: tree.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'tree'
+#  Last modified 2022-02-10 16:15:11.888819161
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+rebuild-th.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 19:30:44
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+transfer-result.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-05-04 00:58:31
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+itsdb.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.956801304
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+generalize.c:
+#  Implicit rule search has been done.
+#  Last modified 2013-07-11 23:49:24
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+idiom.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.100805444
+#  File has been updated.
+#  Successfully updated.
+
+pic/edge-vectors.o: edge-vectors.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'edge-vectors'
+#  Last modified 2022-02-10 16:15:11.552817944
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/maxent.o: maxent.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'maxent'
+#  Last modified 2022-02-10 16:15:10.792815192
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/lisp.o: lisp.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'lisp'
+#  Last modified 2022-02-10 16:15:11.820818915
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+exunpack.c:
+#  Implicit rule search has been done.
+#  Last modified 2011-10-10 18:50:32
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+generate.c:
+#  Implicit rule search has been done.
+#  Last modified 2017-04-18 00:37:26
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lexical-parse.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.67680391
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+glb.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-08-07 17:20:38
+#  File has been updated.
+#  Successfully updated.
+
+pic/compile-qc.o: compile-qc.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'compile-qc'
+#  Last modified 2022-02-10 16:15:11.724818568
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+rule-use-model.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:08.428806632
+#  File has been updated.
+#  Successfully updated.
+
+pic/generalize.o: generalize.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'generalize'
+#  Last modified 2022-02-10 16:15:11.35281722
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+transfer-result.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.876804634
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+preprocessor.c:
+#  Implicit rule search has been done.
+#  Last modified 2015-04-22 01:35:41
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+lexicon.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-11-21 23:58:29
+#  File has been updated.
+#  Successfully updated.
+
+pic/qc.o: qc.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'qc'
+#  Last modified 2022-02-10 16:15:10.164812917
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+ 
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+tdl.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.148798381
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+compile-qc.c:
+#  Implicit rule search has been done.
+#  Last modified 2013-08-20 23:12:25
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+timer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:09.216809485
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+edge-vectors.c:
+#  Implicit rule search has been done.
+#  Last modified 2011-04-13 19:38:01
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+forest-out.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 20:46:00
+#  File has been updated.
+#  Successfully updated.
+
+libace.so: pic/lexicon.o pic/chart.o pic/dag.o pic/type.o pic/tdl.o pic/rule.o pic/morpho.o pic/roots.o pic/freeze.o pic/unify.o pic/qc.o pic/agenda.o pic/net.o pic/glb.o pic/semindex.o pic/hash.o pic/mrs.o pic/mrsvpm.o pic/mrsdg.o pic/itsdb.o pic/pack.o pic/unpack.o pic/maxent.o pic/generate.o pic/parse.o pic/lui.o pic/conf.o pic/preprocessor.o pic/treebank-control.o pic/token.o pic/lattice-mapping.o pic/lexical-parse.o pic/generalize.o pic/transfer.o pic/transfer-result.o pic/edge-vectors.o pic/forest-out.o pic/exunpack.o pic/semilattice.o pic/rebuild-th.o pic/compile-qc.o pic/idiom.o pic/yy.o pic/lisp.o pic/tnt.o pic/tree.o pic/reconstruct.o pic/arbiter.o pic/profiler.o pic/qcparse.o pic/rule-use-model.o pic/ubertag.o pic/dublin.o pic/licenses.o pic/dag-provenance.o pic/semi.o pic/timeout.o pic/csaw/csaw.o pic/csaw/naive.o pic/csaw/normalize.o pic/libace.o pic/timer.o post/post.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-02-10 16:15:12.508821408
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 61):
+	rm -f libace.so
+	gcc -shared ${PICOBJS} ${HIDDENPICOBJS} post/post.o -Wl,-soname,libace.so -o libace.so -lrepp ${DELPHIN_LIBS} -ldl -lutil
+
+pic/yy.o: yy.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'yy'
+#  Last modified 2022-02-10 16:15:11.788818799
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/exunpack.o: exunpack.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'exunpack'
+#  Last modified 2022-02-10 16:15:11.620818191
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+reconstruct.c:
+#  Implicit rule search has been done.
+#  Last modified 2016-03-02 19:30:44
+#  File has been updated.
+#  Successfully updated.
+
+pic/net.o: net.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'net'
+#  Last modified 2022-02-10 16:15:10.22081312
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+ace: lexicon.o chart.o dag.o type.o tdl.o rule.o morpho.o roots.o freeze.o unify.o qc.o agenda.o net.o glb.o semindex.o hash.o mrs.o mrsvpm.o mrsdg.o itsdb.o pack.o unpack.o maxent.o generate.o parse.o lui.o conf.o preprocessor.o treebank-control.o token.o lattice-mapping.o lexical-parse.o generalize.o transfer.o transfer-result.o edge-vectors.o forest-out.o exunpack.o semilattice.o rebuild-th.o compile-qc.o idiom.o yy.o lisp.o tnt.o tree.o reconstruct.o arbiter.o profiler.o qcparse.o rule-use-model.o ubertag.o dublin.o licenses.o dag-provenance.o semi.o timeout.o csaw/csaw.o csaw/naive.o csaw/normalize.o main.o post/post.o timer.o linenoise.o lui-cli.o
+#  Implicit rule search has not been done.
+#  Last modified 2022-02-10 16:15:09.432810266
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 44):
+	${CC} ${LDFLAGS} ${EXPORT_DYNAMIC_CFLAG} ${CFLAGS} ${APPOBJ} -o ace ${POST_LIBS} ${REPP_LIBS} ${DELPHIN_LIBS} -lpthread -lm ${BOOST_REGEX_LIBS} -ldl
+
+pic/pack.o: pack.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'pack'
+#  Last modified 2022-02-10 16:15:10.644814656
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+preprocessor.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.448803086
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+yy.c:
+#  Implicit rule search has been done.
+#  Last modified 2018-11-14 01:16:53
+#  File has been updated.
+#  Successfully updated.
+
+pic/licenses.o: licenses.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'licenses'
+#  Last modified 2022-02-10 16:15:12.212820335
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/unify.o: unify.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'unify'
+#  Last modified 2022-02-10 16:15:10.120812757
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+pic/transfer.o: transfer.c
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: 'transfer'
+ 
+#  Last modified 2022-02-10 16:15:11.46881764
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 53):
+	mkdir -p pic pic/csaw
+	${CC} ${CFLAGS} -fPIC -c $< -o $@
+
+# Not a target:
+lui.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.380802838
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+forest-out.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:07.936804851
+#  File has been updated.
+#  Successfully updated.
+
+install: ace libace.so libace.a
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 71):
+	cp ace ${PREFIX}/bin/
+	cp libace.so ${PREFIX}/lib/
+	cp libace.a ${PREFIX}/lib/
+	mkdir -p ${PREFIX}/include/ace
+	cp *.h ${PREFIX}/include/ace/
+
+# Not a target:
+qc.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-02-10 16:15:06.536799784
+#  File has been updated.
+#  Successfully updated.
+
+# files hash-table stats:
+# Load=199/1024=19%, Rehash=0, Collisions=123/538=23%
+# VPATH Search Paths
+
+# No 'vpath' search paths.
+
+# No general ('VPATH' variable) search path.
+
+# strcache buffers: 1 (0) / strings = 324 / storage = 3334 B / avg = 10 B
+# current buf: size = 8162 B / used = 3334 B / count = 324 / avg = 10 B
+
+# strcache performance: lookups = 722 / hit rate = 55%
+# hash-table stats:
+# Load=324/8192=4%, Rehash=0, Collisions=16/722=2%
+# Finished Make data base on Sat Jul 23 01:02:53 2022
+
+ 
