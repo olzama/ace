@@ -123,34 +123,47 @@ struct supertagger *load_supertagger(char* filename)
 	return st;
 }
 
+static char * normalize_tag(char * supertag)
+{
+	char * norm_tag = malloc(strlen(supertag)); 
+	strcpy(norm_tag, supertag);
+	norm_tag++;
+	norm_tag[strlen(supertag) - 2] = '\0';	
+	return norm_tag;
+}
+
 // lexical chart has an edge for each possible tag of each possible token
+// OZ: This function is based on ubertag_lattice in ubertag.c.
+// For now, this function simply relies on obtaining a list of supertags
+// for each word in the input sentence. This list comes from an "oracle"
+// in the sense that the supertagger was already run externally and provided
+// exactly one tag per word.
 void supertag_lattice(struct supertagger *st, struct lattice *ll)
 {
-	int i;
-	int		tags[ll->nedges];
-	char	*tagnames[ll->nedges];
-	for(i=0;i<ll->nedges;i++)
+	int	new_nedges = 0;
+	int i_true;
+	for(i_true=0;i_true<ll->nedges;i_true++)
 	{
-		struct lattice_edge	*e = ll->edges[i];
+		struct lattice_edge	*e = ll->edges[i_true];
 		char	*tagname = e->edge->lex->lextype->name;
 		int position = e->from->id;
 		char *supertag = st->pretagged[position];
 		// The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
-		char * norm_tag = malloc(strlen(supertag)); 
-		strcpy(norm_tag, supertag);
-		norm_tag++;
-    	norm_tag[strlen(supertag) - 2] = '\0';					
+		char * norm_tag = normalize_tag(supertag);					
 		if (strcmp(norm_tag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
 		{
-			printf("KEEPING %s\n", tagname);
+			DEBUG("KEEPING %s\n", tagname);
+			ll->edges[new_nedges++] = ll->edges[i_true];
 		}
 		else
 		{
-			printf("DISCARDING %s\n", tagname);
+			DEBUG("DISCARDING %s\n", tagname);
 		}
-		
+		//free(norm_tag); OZ: where should the memory be freed?
 	}
+	ll->nedges = new_nedges;
 }
+
 
 
 // Destructor for supertagger:
