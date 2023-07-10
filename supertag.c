@@ -89,7 +89,7 @@ void **load_supertags(char *filename, struct supertagger *st)
 				char *s = malloc(len + strlen(norm_tag) + 1);
 				strcpy(s, norm_tag);
 				st->pretagged[i++] = s;
-				printf("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
+				DEBUG("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
 				tag = strtok(NULL, ", ");
 			}
 		}
