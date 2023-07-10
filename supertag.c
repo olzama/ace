@@ -24,6 +24,15 @@
 
 int enable_supertagging = 0;
 
+// The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
+static char * normalize_tag(char * supertag)
+{
+	char * norm_tag = malloc(strlen(supertag)); 
+	strcpy(norm_tag, supertag);
+	norm_tag++;
+	norm_tag[strlen(supertag) - 2] = '\0';	
+	return norm_tag;
+}
 
 int	st_lookup_tag(struct supertagger *st, char	*tag, int	insert)
 {
@@ -75,11 +84,10 @@ void **load_supertags(char *filename, struct supertagger *st)
 			char *tag = strtok(p, ",");
 			while (tag != NULL)
 			{
-				st->hashed_tags[i] = st_lookup_tag(st, tag, 1);
-				// supertags = (char **)realloc(supertags, sizeof(char *) * (SIZE + 1));
-				// supertags[SIZE - 1] = strdup(tag);
-				char *s = malloc(len + strlen(tag) + 1);
-				strcpy(s, tag);
+				char *norm_tag = normalize_tag(tag);
+				st->hashed_tags[i] = st_lookup_tag(st, norm_tag, 1);
+				char *s = malloc(len + strlen(norm_tag) + 1);
+				strcpy(s, norm_tag);
 				st->pretagged[i++] = s;
 				printf("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
 				tag = strtok(NULL, ", ");
@@ -90,9 +98,6 @@ void **load_supertags(char *filename, struct supertagger *st)
 	fclose(fp);
 	if (line)
 		free(line);
-
-	//*st->hashed_tags = supertags;
-	//*st->pretagged = supertag_names;
 }
 
 
@@ -117,20 +122,14 @@ struct supertagger *load_supertagger(char* filename)
 	st->tag_hash = hash_new(hash_name);
 	load_supertags(filename, st);
 	// Debug: print all the tags in the st->pretagged list:
-	for (int i = 0; i < st->ntags; i++) {
-		printf("%s\n", st->pretagged[i]);
-	}
+	//for (int i = 0; i < st->ntags; i++) {
+	//	int* tagi = hash_find(st->tag_hash, st->pretagged[i]);
+	//	printf("%s:%d\n", st->pretagged[i], *tagi);
+	//}
 	return st;
 }
 
-static char * normalize_tag(char * supertag)
-{
-	char * norm_tag = malloc(strlen(supertag)); 
-	strcpy(norm_tag, supertag);
-	norm_tag++;
-	norm_tag[strlen(supertag) - 2] = '\0';	
-	return norm_tag;
-}
+
 
 // lexical chart has an edge for each possible tag of each possible token
 // OZ: This function is based on ubertag_lattice in ubertag.c.
@@ -148,16 +147,21 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll)
 		char	*tagname = e->edge->lex->lextype->name;
 		int position = e->from->id;
 		char *supertag = st->pretagged[position];
-		// The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
-		char * norm_tag = normalize_tag(supertag);					
-		if (strcmp(norm_tag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
+		int edge_tag = st_lookup_tag(st, tagname, 1); 
+		int desired_tag = st_lookup_tag(st, supertag, 1);					
+		//if (strcmp(supertag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
+		if (edge_tag == desired_tag)
 		{
 			DEBUG("KEEPING %s\n", tagname);
 			ll->edges[new_nedges++] = ll->edges[i_true];
+			//printf("Lexical chart:\n");
+			//print_lexical_chart(ll);
 		}
 		else
 		{
 			DEBUG("DISCARDING %s\n", tagname);
+			//printf("Lexical chart:\n");
+			//print_lexical_chart(ll);
 		}
 		//free(norm_tag); OZ: where should the memory be freed?
 	}

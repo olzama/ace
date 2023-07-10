@@ -477,6 +477,8 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 
 	// do lexical lookup
 	struct lattice	*lexical_chart = lexical_lookup_into_chart(token_chart);
+	printf("Built a lexical chart\n");
+	print_lexical_chart(lexical_chart);
 	if(!lexical_chart)
 	{
 		fprintf(stderr, "NOTE: failed to build lexical chart\n");
@@ -496,6 +498,8 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 	{
 		// do lexical parsing
 		int rv = lexical_parse_lattice(lexical_chart);
+		printf("Reduced lexical chart\n");
+		print_lexical_chart(lexical_chart);
 		if(rv == -1)
 		{
 			itsdb_error("ran out of RAM in lexical parsing");
@@ -511,8 +515,12 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 		return -2;
 	}
 
-	if(reduce_chart_before_lexical_parsing)
+	if(reduce_chart_before_lexical_parsing) {
 		lexical_parse_lattice(lexical_chart);
+		printf("Lexical chart after calling lexical_parse_lattice\n");
+		print_lexical_chart(lexical_chart);
+
+	}
 
 	if(trace)print_lexical_chart(lexical_chart);
 	if(trace)printf("finished lexical parsing\n");
@@ -522,6 +530,8 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 	// do lexical filtering
 	apply_lexical_filtering(lexical_chart);
 	if(trace)printf("finished lexical filtering\n");
+	printf("Lexical chart after lexical filtering\n");
+	print_lexical_chart(lexical_chart);
 
 	extern struct ubertagger	*the_ubertagger;
 	extern int	enable_ubertagging;
@@ -531,6 +541,7 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 	if(the_ubertagger && enable_ubertagging) 
 	{
 		printf("Lexical chart before ubertagging:\n");
+		print_lexical_chart(lexical_chart);
 		//ubertag_lattice(the_ubertagger, lexical_chart, log(ubertagging_threshold));
 		if (the_supertagger)	
 			supertag_lattice(the_supertagger, lexical_chart);
