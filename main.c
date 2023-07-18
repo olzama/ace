@@ -42,7 +42,7 @@ int timeout_seconds = 0;
 extern int	enable_ubertagging;
 extern double	ubertagging_threshold;
 extern int	enable_supertagging; // oracle supertags read from a file for a specific list of sentences to parse
-char *supertags_path;
+extern char *supertags_path;
 
 int	disable_generalization = 0;
 
@@ -187,8 +187,8 @@ void	parse_args(int	argc, char	*argv[])
 		{"gen-qc", 0,&gen_qc, 1},
 		{"improve-characterization", 0,&do_improve_characterization, 1},
 		{NULL,0,NULL,0},
-#define	SUPERTAG_OPTION			1015
-		{"supertagging", 2,NULL, SUPERTAG_OPTION}
+//#define	SUPERTAG_OPTION			1015
+//		{"supertagging", 2,NULL, SUPERTAG_OPTION}
 		};
 
 #define	REQUIRE_POSITIVE(option)	do { if(atoi(optarg)<1) { \
@@ -198,7 +198,7 @@ void	parse_args(int	argc, char	*argv[])
 	int	gorv;
 	while(1)
 	{
-		gorv = getopt_long(argc, argv, "VhvpfEPL:lXg:G:m:qtTRe1n:r:jFOsiyz", long_options, NULL);
+		gorv = getopt_long(argc, argv, "VhvpfEPL:lXg:G:m:qtTRe1n:r:jFOsiyz:", long_options, NULL);
 		if(gorv == -1)break;
 		switch(gorv) {
 		case	'V':	printf("ACE version %s\n", ACE_VERSION);
@@ -230,7 +230,7 @@ void	parse_args(int	argc, char	*argv[])
 		case	'F':	form_to_relation = 1;	break;
 		case	's':	dont_unspecialize = 1;	break;
 		case	'i':	g_profiling = 1;		break;
-		case    'z':    supertags_path = optarg;   break;
+		case    'z':    enable_supertagging=1; supertags_path = optarg;   break; // OZ: This should be a full-word option but I can't make it work
 		case	'?':	goto usage;
 
 		case	MAX_UNPACK_MEGABYTES_OPTION:	max_unpack_megabytes = atoi(optarg);	REQUIRE_POSITIVE("--max-unpack-megabytes"); break;
@@ -252,8 +252,7 @@ void	parse_args(int	argc, char	*argv[])
 			}
 			enable_ubertagging = 1;
 			break;
-		case	SUPERTAG_OPTION: supertags_path = optarg; enable_supertagging = 1; break;
-		//case	SUPERTAG_OPTION: enable_supertagging = 1; break;
+		//case	SUPERTAG_OPTION: supertags_path = optarg; enable_supertagging = 1; break;
 		case	DUBLIN_OPTION: csaw_grammar_path = optarg; enable_dublin = 1; break;
 		case	MAXENT_OPTION: override_maxent_path = optarg; break;
 		case	UDX_OPTION:

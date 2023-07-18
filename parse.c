@@ -536,10 +536,12 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 	extern struct ubertagger	*the_ubertagger;
 	extern int	enable_ubertagging; 
 	extern int enable_supertagging;
+	extern char *supertags_path;
 	if (enable_supertagging)
 	{
-		char *st_file = "supertags.txt";
-		struct supertagger	*the_supertagger = load_supertagger(st_file);
+		//char *st_file = "supertags.txt";
+		printf("%s\n",supertags_path);
+		struct supertagger	*the_supertagger = load_supertagger(supertags_path);
 		if (the_supertagger)	
 			supertag_lattice(the_supertagger, lexical_chart);
 	}
