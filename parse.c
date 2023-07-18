@@ -535,16 +535,24 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 
 	extern struct ubertagger	*the_ubertagger;
 	extern int	enable_ubertagging; 
-	if(g_profiling)start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);
-	if(the_ubertagger && enable_ubertagging) 
+	extern int enable_supertagging;
+	if (enable_supertagging)
 	{
 		char *st_file = "supertags.txt";
 		struct supertagger	*the_supertagger = load_supertagger(st_file);
-		//printf("Lexical chart before ubertagging:\n");
-		//print_lexical_chart(lexical_chart);
-		//ubertag_lattice(the_ubertagger, lexical_chart, log(ubertagging_threshold));
 		if (the_supertagger)	
 			supertag_lattice(the_supertagger, lexical_chart);
+	}
+	if(g_profiling)start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);
+	if(the_ubertagger && enable_ubertagging) 
+	{
+		//char *st_file = "supertags.txt";
+		//struct supertagger	*the_supertagger = load_supertagger(st_file);
+		//printf("Lexical chart before ubertagging:\n");
+		//print_lexical_chart(lexical_chart);
+		ubertag_lattice(the_ubertagger, lexical_chart, log(ubertagging_threshold));
+		//if (the_supertagger)	
+		//	supertag_lattice(the_supertagger, lexical_chart);
 		//printf("Lexical chart after ubertagging:\n");
 		//print_lexical_chart(lexical_chart);
 	}
