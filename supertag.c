@@ -66,12 +66,12 @@ void **load_supertags(char *filename, struct supertagger *st)
     char *line = NULL;
     size_t len = 0;
     int read;
-    int i = 0;
-	int w_i = 0;
+	int s_i = 0; // sentence number
     while ((read = getline(&line, &len, fp)) != -1)
     {
         if (line[0] == '[')
         {
+			int i = 0; // token number
             char *p = line + 1;
             char *q = strchr(p, ']');
             if (q == NULL)
@@ -87,12 +87,12 @@ void **load_supertags(char *filename, struct supertagger *st)
                 st->hashed_tags[i] = st_lookup_tag(st, norm_tag, 1);
                 char *s = malloc(len + strlen(norm_tag) + 1);
                 strcpy(s, norm_tag);
-                st->pretagged[w_i][i++] = s;
+                st->pretagged[s_i][i++] = s;
                 DEBUG("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
                 tag = strtok(NULL, ", ");
             }
         }
-		w_i++;
+		s_i++;
     }
 
     fclose(fp);
