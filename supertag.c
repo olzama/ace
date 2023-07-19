@@ -23,6 +23,7 @@
 //#define	DEBUG(x...)
 
 int enable_supertagging = 0;
+char *supertags_path = NULL;
 
 // The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
 static char * normalize_tag(char * supertag)
@@ -49,12 +50,61 @@ int	st_lookup_tag(struct supertagger *st, char	*tag, int	insert)
 	return *tagi;
 }
 
-
-// Load a list of supertags from a file
-// Format: ['tag1', 'tag2', ...]
-// Return: a list of supertags
+// Load a list of lists of supertags from a file
+// Format: ['tag1', 'tag2', ...]\n['tag1', 'tag2', ...]\n...
+// Return: a list of lists of supertags
 // Note: written for the most part by Bing Chat
 void **load_supertags(char *filename, struct supertagger *st)
+{
+    FILE *fp = fopen(filename, "r");
+    if (fp == NULL)
+    {
+        fprintf(stderr, "Error: cannot open file %s\n", filename);
+        exit(EXIT_FAILURE);
+    }
+
+    char *line = NULL;
+    size_t len = 0;
+    int read;
+    int i = 0;
+	int w_i = 0;
+    while ((read = getline(&line, &len, fp)) != -1)
+    {
+        if (line[0] == '[')
+        {
+            char *p = line + 1;
+            char *q = strchr(p, ']');
+            if (q == NULL)
+            {
+                fprintf(stderr, "Error: invalid supertag list format\n");
+                exit(EXIT_FAILURE);
+            }
+            *q = '\0';
+            char *tag = strtok(p, ",");
+            while (tag != NULL)
+            {
+                char *norm_tag = normalize_tag(tag);
+                st->hashed_tags[i] = st_lookup_tag(st, norm_tag, 1);
+                char *s = malloc(len + strlen(norm_tag) + 1);
+                strcpy(s, norm_tag);
+                st->pretagged[w_i][i++] = s;
+                DEBUG("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
+                tag = strtok(NULL, ", ");
+            }
+        }
+		w_i++;
+    }
+
+    fclose(fp);
+    if (line)
+        free(line);
+}
+
+// Load a list of lists of supertags from a file
+// Format: ['tag1', 'tag2', ...]\n['tag1', 'tag2', ...]\n...
+// Return: a list of lists of supertags
+// Note: written for the most part by Bing Chat
+/*void **load_supertags2(char *filename, struct supertagger *st)
 {
 	FILE *fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -98,7 +148,7 @@ void **load_supertags(char *filename, struct supertagger *st)
 	fclose(fp);
 	if (line)
 		free(line);
-}
+}*/
 
 
 // Get the n-th item from the list of supertags
@@ -114,7 +164,9 @@ char *get_supertag(char **supertags, int n)
 
 // Initialize the supertagger.
 
-struct supertagger *load_supertagger(char* filename)
+struct supertagger *the_supertagger;
+
+void load_supertagger(char* filename)
 {
 	char * hash_name = "supertag_hash";
 	struct supertagger *st = calloc(sizeof(struct supertagger),1);
@@ -126,9 +178,9 @@ struct supertagger *load_supertagger(char* filename)
 	//	int* tagi = hash_find(st->tag_hash, st->pretagged[i]);
 	//	printf("%s:%d\n", st->pretagged[i], *tagi);
 	//}
-	return st;
+	//return st;
+	the_supertagger = st;
 }
-
 
 
 // lexical chart has an edge for each possible tag of each possible token
@@ -137,7 +189,7 @@ struct supertagger *load_supertagger(char* filename)
 // for each word in the input sentence. This list comes from an "oracle"
 // in the sense that the supertagger was already run externally and provided
 // exactly one tag per word.
-void supertag_lattice(struct supertagger *st, struct lattice *ll)
+void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 {
 	int	new_nedges = 0;
 	int i_true;
@@ -146,7 +198,7 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll)
 		struct lattice_edge	*e = ll->edges[i_true];
 		char	*tagname = e->edge->lex->lextype->name;
 		int position = e->from->id;
-		char *supertag = st->pretagged[position];
+		char *supertag = st->pretagged[s_i][position];
 		int edge_tag = st_lookup_tag(st, tagname, 1); 
 		int desired_tag = st_lookup_tag(st, supertag, 1);					
 		//if (strcmp(supertag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
@@ -167,8 +219,6 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll)
 	}
 	ll->nedges = new_nedges;
 }
-
-
 
 // Destructor for supertagger:
 // void free_supertagger(struct supertagger *st)

@@ -83,6 +83,7 @@ struct grammar
 	void	*transfer;
 	void	*qc;
 	void	*ubertagger;
+	void	*supertagger;
 };
 
 extern void	*slab_alloc(int	len);
@@ -424,6 +425,7 @@ extern struct type_hierarchy	*main_th, *semi_th, *semi_p_th;
 	freezer_note("stochastic-model");
 	G->ubertagger = freeze_ubertagger();
 	if(G->ubertagger)freezer_note("ubertagger");
+	G->supertagger = NULL;
 
 	int l = snprintf(G->message, sizeof(G->message)-1, "frozen grammar file: ace |%s| grammar |%s;;%s|",
 		ACE_VERSION, grammar_dir, grammar_version);

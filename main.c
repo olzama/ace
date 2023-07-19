@@ -91,7 +91,7 @@ extern int	yy_rule_mode;
 
 extern float timer();
 
-int	parse_line(char	*line);
+int	parse_line(char	*line, int sent_num);
 extern char	*csaw_grammar_path;
 
 char	*override_maxent_path = NULL;
@@ -324,6 +324,7 @@ struct job_stats	arbiter_input_loop(FILE	*fin)
 	extern char	*current_arbiter_job_id;
 	arbiter_fd = 0;
 	gettimeofday(&tv1, 0);
+	int sent_num = 0;
 	while(!die && !feof(fin))
 	{
 		char	*arbiter_next_input();
@@ -335,7 +336,7 @@ struct job_stats	arbiter_input_loop(FILE	*fin)
 		int num_results;
 		clear_slab();
 		if(g_mode == PARSING)
-			num_results = parse_line(next_input);
+			num_results = parse_line(next_input, sent_num++);
 		else
 		{
 			clear_mrs();
@@ -422,6 +423,7 @@ struct job_stats	main_input_loop(FILE	*fin)
 	}
 
 	gettimeofday(&tv1, 0);
+	int sent_num = 0;
 	while(!die && !feof(fin))
 	{
 		int num_results;
@@ -451,7 +453,8 @@ struct job_stats	main_input_loop(FILE	*fin)
 			else
 			{
 				if(!lui_mode)clear_slab();
-				num_results = parse_line(lineptr);
+				num_results = parse_line(lineptr, sent_num);
+				sent_num++;
 				st.count++;
 			}
 			if(lui_mode)free(lineptr);
@@ -574,6 +577,14 @@ void	initialize_engine()
 	extern void *the_ubertagger;
 	if(enable_ubertagging && !the_ubertagger)
 		fprintf(stderr, "WARNING: cannot enable übertagging; no model present in this grammar image.\n");
+	
+	extern void *the_supertagger;
+	if (enable_supertagging)
+	{
+		//struct supertagger	*the_supertagger = load_supertagger(supertags_path);
+		load_supertagger(supertags_path);
+		//printf("Loaded supertagger");
+	}
 }
 
 void	report_stats(struct job_stats	stats)

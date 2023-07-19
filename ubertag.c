@@ -459,7 +459,7 @@ int	load_ubertagging()
 	
 	//the_ubertagger = load_ubertagger("/home/sweaglesw/cdev/erg-1214/ut/nanc_wsj_redwoods_noaffix.ex.gz","/home/sweaglesw/cdev/erg-1214/ut/nanc_wsj_redwoods_noaffix.tx.gz", "/home/sweaglesw/cdev/erg-1214/ut/generics.cfg");
 	the_ubertagger = load_ubertagger(expath,txpath,gmpath);
-	printf("loaded ubertagger\n");
+	//printf("loaded ubertagger\n");
 	if(!the_ubertagger)return -1;
 	the_ubertagger->whitelist = hash_new("ut-whitelist");
 	if(wlpath)load_hashlist(the_ubertagger->whitelist, wlpath);

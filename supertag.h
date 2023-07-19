@@ -16,12 +16,13 @@ struct supertagger
 	int		ntags;
 	char	**tags;
 	int hashed_tags[SIZE];
-	char *pretagged[SIZE];
+	char *pretagged[SIZE][SIZE];
 	struct hash *tag_hash;				
 };
 
 void **load_supertags(char *filename, struct supertagger *st);
-struct supertagger	*load_supertagger(char	*pretaggedpath);
+void load_supertagger(char	*pretaggedpath);
+//struct supertagger	*load_supertagger(char	*pretaggedpath);
 //void	supertag_lattice(struct supertagger	*st, struct lattice	*ll, double	thresh);
 //void	free_supertagger(struct supertagger	*st);
 //int load_supertagging();

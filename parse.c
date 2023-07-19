@@ -429,7 +429,8 @@ int parse_show_result(struct hypothesis	*hyp, struct mrs	*mrs, double	prob)
 
 static int chart_setup_timer = -1;
 
-int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence)
+//OZ: Adding sent_num for the oracle supertagger setup where the supertagger simply looks up oracle tags for each sentence from a file
+int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence, int sent_num)
 {
 	clock_t	start = clock();
 
@@ -442,10 +443,10 @@ int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence)
 	struct lattice	*token_chart = build_token_chart(nwords, words, cfrom, cto);
 	if(!token_chart) { stop_timer(chart_setup_timer, 1); return -1; }
 
-	return parse_with_token_chart(token_chart, start);
+	return parse_with_token_chart(token_chart, start, sent_num);
 }
 
-int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
+int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_num)
 {
 	int		i, count, cforest;
 	int		num_parses = 0, num_entries;
@@ -534,14 +535,14 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 	//print_lexical_chart(lexical_chart);
 
 	extern struct ubertagger	*the_ubertagger;
-	extern int	enable_ubertagging; 
+	extern int	enable_ubertagging;
+	extern struct supertagger	*the_supertagger; 
 	extern int enable_supertagging;
 	extern char *supertags_path;
-	if (enable_supertagging)
+	if (the_supertagger && enable_supertagging)
 	{
-		struct supertagger	*the_supertagger = load_supertagger(supertags_path);
-		if (the_supertagger)	
-			supertag_lattice(the_supertagger, lexical_chart);
+		//struct supertagger	*the_supertagger = load_supertagger(supertags_path);
+		supertag_lattice(the_supertagger, lexical_chart, sent_num);
 	}
 	if(g_profiling)start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);
 	if(the_ubertagger && enable_ubertagging) 
@@ -688,7 +689,7 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start)
 
 void	preprocess_line(char	*string, int	*Nwords, char	***Words, int	**CFrom, int	**CTo);
 
-int	parse_line1(char	*line)
+int	parse_line1(char	*line, int sent_num)
 {
 	char	*copy = NULL;
 	int	nparse = 0;
@@ -763,7 +764,7 @@ int	check_mbs(char	*mbs);
 	strncpy(current_sentence, line, 10239);current_sentence[10239] = 0;
 	level = 0;
 	timer();
-	nparse = parse(nwords, words, cfrom, cto, current_sentence);
+	nparse = parse(nwords, words, cfrom, cto, current_sentence, sent_num); 
 	if(nparse<=0 && !inhibit_results && !do_itsdb_stdout){printf("SKIP: %s\n", line);fflush(stdout);}
 
 #ifdef	LEVEL_TIMER
@@ -786,9 +787,9 @@ finished:
 	return nparse;
 }
 
-int parse_line(char	*line)
+int parse_line(char	*line, int sent_num)
 {
-	int res = parse_line1(line);
+	int res = parse_line1(line, sent_num);
 	if(!inhibit_results)printf("\n\n");
 	fflush(stdout);
 	return res;
