@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stdbool.h>
 #include <wctype.h>
 #include "unicode.h"
 #include "token.h"
@@ -15,25 +16,35 @@
 #include "tdl.h"
 #include "freeze.h"
 
-#define DEBUG(x...) \
-	do              \
-	{               \
-		printf(x);  \
-	} while (0)
-//#define	DEBUG(x...)
+// #define DEBUG(x...) \
+// 	do              \
+// 	{               \
+// 		printf(x);  \
+// 	} while (0)
+#define	DEBUG(x...)
 
 int enable_supertagging = 0;
 char *supertags_path = NULL;
 
 // The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
+// static char * normalize_tag(char * supertag)
+// {
+// 	char * norm_tag = malloc(strlen(supertag)); 
+// 	strcpy(norm_tag, supertag);
+// 	norm_tag++;
+// 	norm_tag[strlen(supertag) - 2] = '\0';	
+// 	return norm_tag;
+// }
+
 static char * normalize_tag(char * supertag)
 {
-	char * norm_tag = malloc(strlen(supertag)); 
-	strcpy(norm_tag, supertag);
-	norm_tag++;
-	norm_tag[strlen(supertag) - 2] = '\0';	
-	return norm_tag;
+    size_t len = strlen(supertag);
+    char * norm_tag = malloc(len + 1);
+    strncpy(norm_tag, supertag + 1, len - 2);
+    norm_tag[len - 2] = '\0';
+    return norm_tag;
 }
+
 
 int	st_lookup_tag(struct supertagger *st, char	*tag, int	insert)
 {
@@ -84,13 +95,18 @@ void **load_supertags(char *filename, struct supertagger *st)
             while (tag != NULL)
             {
                 char *norm_tag = normalize_tag(tag);
-                st->hashed_tags[i] = st_lookup_tag(st, norm_tag, 1);
-                char *s = malloc(len + strlen(norm_tag) + 1);
-                strcpy(s, norm_tag);
-                st->pretagged[s_i][i++] = s;
-                DEBUG("Added supertag %s hashed to bucket %d\n", st->pretagged[i-1], st->hashed_tags[i-1]);
+                //st->hashed_tags[s_i][i] = st_lookup_tag(st, norm_tag, 1);
+				//char *s = malloc(len + strlen(norm_tag) + 1);
+				char *s = malloc(strlen(norm_tag) + 1);
+                //strcpy(s, norm_tag);
+				strncpy(s, norm_tag, strlen(norm_tag) + 1);
+                st->pretagged[s_i][i] = s;
+				DEBUG("Added supertag %s\n", st->pretagged[s_i][i]);
+                //DEBUG("Added supertag %s hashed to bucket %d\n", st->pretagged[s_i][i], st->hashed_tags[i]);
                 tag = strtok(NULL, ", ");
+				i++;
             }
+			st->sentence_lengths[s_i] = i;
         }
 		s_i++;
     }
@@ -173,12 +189,6 @@ void load_supertagger(char* filename)
 	st->ntags = 0;
 	st->tag_hash = hash_new(hash_name);
 	load_supertags(filename, st);
-	// Debug: print all the tags in the st->pretagged list:
-	//for (int i = 0; i < st->ntags; i++) {
-	//	int* tagi = hash_find(st->tag_hash, st->pretagged[i]);
-	//	printf("%s:%d\n", st->pretagged[i], *tagi);
-	//}
-	//return st;
 	the_supertagger = st;
 }
 
@@ -189,20 +199,86 @@ void load_supertagger(char* filename)
 // for each word in the input sentence. This list comes from an "oracle"
 // in the sense that the supertagger was already run externally and provided
 // exactly one tag per word.
+// void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
+// {
+// 	int	new_nedges = 0;
+// 	int i_true;
+// 	for(i_true=0;i_true<ll->nedges;i_true++)
+// 	{
+// 		struct lattice_edge	*e = ll->edges[i_true];
+// 		char	*tagname = e->edge->lex->lextype->name;
+// 		int position = e->from->id;
+// 		char *supertag = st->pretagged[s_i][position];
+// 		//int edge_tag = st_lookup_tag(st, tagname, 1); 
+// 		//int desired_tag = st_lookup_tag(st, supertag, 1);					
+// 		if (strcmp(supertag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
+// 		//if (edge_tag == desired_tag)
+// 		{
+// 			DEBUG("KEEPING %s\n", tagname);
+// 			ll->edges[new_nedges++] = ll->edges[i_true];
+// 			//printf("Lexical chart:\n");
+// 			//print_lexical_chart(ll);
+// 		}
+// 		else
+// 		{
+// 			DEBUG("DISCARDING %s\n", tagname);
+// 			//printf("Lexical chart:\n");
+// 			//print_lexical_chart(ll);
+// 		}
+// 		//free(norm_tag); OZ: where should the memory be freed?
+// 	}
+// 	ll->nedges = new_nedges;
+// }
+
+
+// True if the supertagger has a supertag for the given token at the any position
+bool find_candidate(struct supertagger *st, int s_i, int position, char *tagname)
+{
+	char *supertag = NULL;
+	int i;
+	for (i = 0; i < st->sentence_lengths[s_i]; i++) {
+		supertag = st->pretagged[s_i][i];
+		if (strcmp(tagname, supertag) == 0) {
+			return 1;
+		}
+	}
+	return 0;
+}
+
+// lexical chart has an edge for each possible tag of each possible token
+// OZ: This function is based on ubertag_lattice in ubertag.c.
+// For now, this function simply relies on obtaining a list of supertags
+// for each terminal (word) in the input sentence. This list comes from an "oracle"
+// in the sense that the supertagger was already run externally and provided
+// exactly one tag per word. The word can consist of more than one token.
+// In such cases, the same supertag should be used for all tokens in the word.
 void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 {
+	//sort_lattice(ll);
 	int	new_nedges = 0;
 	int i_true;
 	for(i_true=0;i_true<ll->nedges;i_true++)
 	{
 		struct lattice_edge	*e = ll->edges[i_true];
 		char	*tagname = e->edge->lex->lextype->name;
+		//char *stemname = (*e->edge->lex->stem)->name;
+		//printf("word: %s\n", stemname);
 		int position = e->from->id;
-		char *supertag = st->pretagged[s_i][position];
-		int edge_tag = st_lookup_tag(st, tagname, 1); 
-		int desired_tag = st_lookup_tag(st, supertag, 1);					
-		//if (strcmp(supertag, tagname) == 0) // OZ: This should instead be using hash. Just testing for now.
-		if (edge_tag == desired_tag)
+		char *supertag = NULL;
+		bool keep = 0;
+		// If there are more tokens in a sentence than terminals, need to iterate through the list of tags
+		// every time to see if there is one that matches both the lexical type of the current token and the
+		// starting position.
+		if (st->sentence_lengths[s_i] != ll->nvertices - 1) {
+			keep = find_candidate(st, s_i, position, tagname);
+		} // otherwise, can take the tag directly based on the token starting position.
+		else {
+			supertag = st->pretagged[s_i][position];
+		}
+		//int edge_tag = st_lookup_tag(st, tagname, 1); 
+		//int desired_tag = st_lookup_tag(st, supertag, 1);					
+		if (keep || (supertag && strcmp(supertag, tagname) == 0)) // OZ: This should instead be using hash. Just testing for now.
+		//if (edge_tag == desired_tag)
 		{
 			DEBUG("KEEPING %s\n", tagname);
 			ll->edges[new_nedges++] = ll->edges[i_true];
@@ -215,10 +291,10 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 			//printf("Lexical chart:\n");
 			//print_lexical_chart(ll);
 		}
-		//free(norm_tag); OZ: where should the memory be freed?
 	}
 	ll->nedges = new_nedges;
 }
+
 
 // Destructor for supertagger:
 // void free_supertagger(struct supertagger *st)

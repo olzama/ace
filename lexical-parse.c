@@ -32,6 +32,19 @@ void	add_new_lexical_edge(struct lattice	*lc, struct edge	*e)
 	add_lattice_edge(lc, lat_e);
 }
 
+void	add_new_lexical_edge1(struct lattice	*lc, struct edge	*e, struct token	**tokens)
+{
+	struct lattice_edge	*lat_e = slab_alloc(sizeof(*lat_e));
+	bzero(lat_e, sizeof(*lat_e));
+	assert(e->from <= lc->nvertices);
+	assert(e->to <= lc->nvertices);
+	lat_e->from = lc->vertices[e->from];
+	lat_e->to = lc->vertices[e->to];
+	lat_e->token = *tokens;
+	lat_e->edge = e;
+	add_lattice_edge(lc, lat_e);
+}
+
 struct lattice	*lexical_lookup_into_chart(struct lattice	*token_chart)
 {
 	struct lattice	*lc = slab_alloc(sizeof(*lc));
@@ -59,7 +72,7 @@ struct lattice	*lexical_lookup_into_chart(struct lattice	*token_chart)
 		extern int debug_level;
 		//printf(" lexical lookup found lexeme '%s'\n", le->lex->word);
 		if(debug_level)printf(" lexical lookup found lexeme '%s'\n", le->lex->word);
-		add_new_lexical_edge(lc, le);
+		add_new_lexical_edge1(lc, le, tokens);
 	}
 
 	int res = lexical_lookup(token_chart, edge_handler);

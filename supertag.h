@@ -15,8 +15,9 @@ struct supertagger
 {
 	int		ntags;
 	char	**tags;
-	int hashed_tags[SIZE];
+	int hashed_tags[SIZE][SIZE];
 	char *pretagged[SIZE][SIZE];
+	int sentence_lengths[SIZE];
 	struct hash *tag_hash;				
 };
 

@@ -443,10 +443,10 @@ int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence, int se
 	struct lattice	*token_chart = build_token_chart(nwords, words, cfrom, cto);
 	if(!token_chart) { stop_timer(chart_setup_timer, 1); return -1; }
 
-	return parse_with_token_chart(token_chart, start, sent_num);
+	return parse_with_token_chart(token_chart, start, sent_num, nwords);
 }
 
-int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_num)
+int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_num, int sen_len)
 {
 	int		i, count, cforest;
 	int		num_parses = 0, num_entries;
@@ -541,8 +541,13 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_
 	extern char *supertags_path;
 	if (the_supertagger && enable_supertagging)
 	{
-		//struct supertagger	*the_supertagger = load_supertagger(supertags_path);
-		supertag_lattice(the_supertagger, lexical_chart, sent_num);
+	    //print_lexical_chart(lexical_chart);
+		//if (sen_len!= the_supertagger->sentence_lengths[sent_num]) {
+		//	fprintf(stderr, "WARNING: number of words in sentence %d does not match number of supertags. Not performing supertagging.\n", sent_num);
+		//}
+		//else {
+			supertag_lattice(the_supertagger, lexical_chart, sent_num);
+		//}
 	}
 	if(g_profiling)start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);
 	if(the_ubertagger && enable_ubertagging) 

@@ -99,7 +99,7 @@ int		next_eid();
 // parser
 int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence, int sent_num);
 #include	<time.h>
-int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_num);
+int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_num, int nwords);
 
 // display
 void	output_lui_chart(struct lattice	*token_lattice);

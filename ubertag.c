@@ -19,8 +19,8 @@
 #define	SMOOTH_EMISSION		(-20)//(-1000)
 #define	SMOOTH_TRANSITION	(-20)//(-1000)
 
-#define	DEBUG(x...)	do { printf(x); } while(0)
-//#define	DEBUG(x...)
+//#define	DEBUG(x...)	do { printf(x); } while(0)
+#define	DEBUG(x...)
 
 int	enable_ubertagging = 0;
 
