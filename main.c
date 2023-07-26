@@ -43,6 +43,7 @@ extern int	enable_ubertagging;
 extern double	ubertagging_threshold;
 extern int	enable_supertagging; // oracle supertags read from a file for a specific list of sentences to parse
 extern char *supertags_path;
+extern char *supertagger_word_ids_path;
 
 int	disable_generalization = 0;
 
