@@ -195,13 +195,15 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 		struct lattice_edge *e = ll->edges[i_true];
 		char *tagname = e->edge->lex->lextype->name;
 		// int position = e->from->id;
+		if (e->from->id == 6)
+			printf("stop");
 		char *supertag = find_supertag(st, s_i, e);
 		// int edge_tag = st_lookup_tag(st, tagname, 1);
 		// int desired_tag = st_lookup_tag(st, supertag, 1);
 		// if (edge_tag == desired_tag)
 		if (supertag && strcmp(supertag, tagname) == 0)
 		{
-			DEBUG("KEEPING %s\n", tagname);
+			DEBUG("KEEPING %s %s vtx [%d-%d]\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
 			ll->edges[new_nedges++] = ll->edges[i_true];
 			// printf("Lexical chart:\n");
 			// print_lexical_chart(ll);

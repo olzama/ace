@@ -126,8 +126,8 @@ int	lexical_parse(struct lattice	*lc, struct lattice_edge	*le, struct edge	**eps
 			}
 			if(res == 1 && e != NULL)
 			{
-				//printf(" -- built new edge #%d ('%s')\n", e->id, show_orth_leaves(e));
-				add_new_lexical_edge(lc, e);
+				printf(" -- built new edge #%d ('%s')\n", e->id, show_orth_leaves(e));
+				add_new_lexical_edge1(lc, e, le->token);
 				fired = 1;
 			}
 			else if(trace>1)

@@ -442,7 +442,6 @@ int	parse(int	nwords, char	**words, int	*cfrom, int	*cto, char	*sentence, int se
 	// setup a token lattice and do token mapping
 	struct lattice	*token_chart = build_token_chart(nwords, words, cfrom, cto);
 	if(!token_chart) { stop_timer(chart_setup_timer, 1); return -1; }
-
 	return parse_with_token_chart(token_chart, start, sent_num, nwords);
 }
 
@@ -475,11 +474,20 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_
 	if(trace)printf("finished token mapping\n");
 
 	if(g_profiling)start_and_alloc_profiler(&lexical_lookup_profiler, "lexical lookup", parse_profiler, token_mapping_profiler);
-
+	for (int i=0; i < token_chart->nedges; i++)
+	{
+		struct lattice_edge *e = token_chart->edges[i];
+		if (!e->token){
+			printf("No token in edge\n");
+		} else {
+			printf("from: %d, to: %d\n", e->token->cfrom, e->token->cto);
+		}
+	}
 	// do lexical lookup
 	struct lattice	*lexical_chart = lexical_lookup_into_chart(token_chart);
-	//printf("Built a lexical chart\n");
-	//print_lexical_chart(lexical_chart);
+	printf("Built a lexical chart\n");
+    print_lexical_chart(lexical_chart);
+
 	if(!lexical_chart)
 	{
 		fprintf(stderr, "NOTE: failed to build lexical chart\n");
@@ -541,22 +549,20 @@ int parse_with_token_chart(struct lattice	*token_chart, clock_t	start, int sent_
 	extern char *supertags_path;
 	if (the_supertagger && enable_supertagging)
 	{
-	    //print_lexical_chart(lexical_chart);
-		//if (sen_len!= the_supertagger->sentence_lengths[sent_num]) {
-		//	fprintf(stderr, "WARNING: number of words in sentence %d does not match number of supertags. Not performing supertagging.\n", sent_num);
-		//}
-		//else {
-			supertag_lattice(the_supertagger, lexical_chart, sent_num);
-		//}
+		printf("Lexical chart before supertagging:\n");
+	    print_lexical_chart(lexical_chart);
+		supertag_lattice(the_supertagger, lexical_chart, sent_num);
+		printf("Lexical chart after supertagging:\n");
+		print_lexical_chart(lexical_chart);
 	}
 	if(g_profiling)start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);
 	if(the_ubertagger && enable_ubertagging) 
 	{
-		//printf("Lexical chart before ubertagging:\n");
-		//print_lexical_chart(lexical_chart);
+		printf("Lexical chart before ubertagging:\n");
+		print_lexical_chart(lexical_chart);
 		ubertag_lattice(the_ubertagger, lexical_chart, log(ubertagging_threshold));
-		//printf("Lexical chart after ubertagging:\n");
-		//print_lexical_chart(lexical_chart);
+		printf("Lexical chart after ubertagging:\n");
+		print_lexical_chart(lexical_chart);
 	}
 	
 	if(g_profiling)start_and_alloc_profiler(&chart_parsing_profiler, "chart parsing", parse_profiler, ubertagging_profiler);
