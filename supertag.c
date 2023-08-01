@@ -26,16 +26,6 @@
 int enable_supertagging = 0;
 char *supertags_path = NULL;
 
-// The tag comes in single quotes, but in the lexical chart there won't be any, so we strip them.
-static char *normalize_tag(char *supertag)
-{
-	size_t len = strlen(supertag);
-	char *norm_tag = malloc(len + 1);
-	strncpy(norm_tag, supertag + 1, len - 2);
-	norm_tag[len - 2] = '\0';
-	return norm_tag;
-}
-
 int st_lookup_tag(struct supertagger *st, char *tag, int insert)
 {
 	int *tagi = hash_find(st->tag_hash, tag);
@@ -52,10 +42,7 @@ int st_lookup_tag(struct supertagger *st, char *tag, int insert)
 	return *tagi;
 }
 
-// Load a list of lists of numbers from a file.
-//  Format: [1, 2, 3, 4, 5, 6, 6, 7]\n[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 12]\n... etc.
-//  Store the numbers in a 2D array of ints in the supertagger struct.
-void **load_word_ids(char *filename, struct supertagger *st)
+void **load_spans(char *filename, struct supertagger *st)
 {
 	FILE *fp = fopen(filename, "r");
 	if (fp == NULL)
@@ -63,73 +50,34 @@ void **load_word_ids(char *filename, struct supertagger *st)
 		fprintf(stderr, "Error: cannot open file %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	// temporary array to store the word ids
-	// int **temp = malloc(sizeof(int *) * SIZE);
-	// for (int i = 0; i < SIZE; i++)
-	// {
-	// 	temp[i] = malloc(sizeof(int) * SIZE);
-	// }
-	// for (int i = 0; i < SIZE; i++)
-	// {
-	// 	for (int j = 0; j < SIZE; j++)
-	// 	{
-	//     	temp[i][j] = -1;
-	// 	}
-	// }
+
 	char *line = NULL;
 	size_t len = 0;
-	int read;
 	int s_i = 0; // sentence number
-	while ((read = getline(&line, &len, fp)) != -1)
+
+	while ((getline(&line, &len, fp)) != -1)
 	{
-		if (line[0] == '[')
+		int i = 0; // tuple number
+		char *p = strdup(line);
+		char *tuple_str = strtok(p, "\t\n");
+
+		while (tuple_str != NULL)
 		{
-			int i = 0; // token number
-			char *p = line + 1;
-			char *q = strchr(p, ']');
-			if (q == NULL)
-			{
-				fprintf(stderr, "Error: invalid supertag list format\n");
-				exit(EXIT_FAILURE);
-			}
-			*q = '\0';
-			char *word_id = strtok(p, ", ");
-			int int_id;
-			int prev_id = -1;
-			while (word_id != NULL)
-			{
-				int_id = atoi(word_id) - 1;
-				st->word_ids[s_i][i] = int_id;
-				if (int_id != prev_id)
-				{
-					st->tag_positions[s_i][i] = i;
-					prev_id = int_id;
-				}
-				// else {
-				//	st->tag_positions[s_i][int_id] = -1;
-				// }
-				// DEBUG("Added word id %s\n", word_id);
-				word_id = strtok(NULL, ", ");
-				i++;
-			}
-			st->sentence_lengths[s_i] = i;
+			int start, end;
+			sscanf(tuple_str, "(%d, %d)", &start, &end);
+
+			// Store the tuple in the spans array
+			st->spans[s_i][i].start = start;
+			st->spans[s_i][i].end = end;
+			i++;
+
+			tuple_str = strtok(NULL, "\t\n");
 		}
-		// for (int j = 0; j < SIZE; j++)
-		// {
-		// 	if (temp[s_i][j] == -1)
-		// 	{
-		// 		st->pretagged[s_i][j] = NULL;
-		// 	}
-		// }
 		s_i++;
 	}
-
 	fclose(fp);
 	if (line)
 		free(line);
-	// for (int i = 0; i < SIZE; i++)
-	// 	free(temp[i]);
-	// free(temp);
 }
 
 void **load_supertags(char *filename, struct supertagger *st)
@@ -155,6 +103,10 @@ void **load_supertags(char *filename, struct supertagger *st)
 		while (tag != NULL)
 		{
 			char *s = strdup(tag);
+			while (*s == ' ')
+			{
+				s++;
+			}
 			st->pretagged[s_i][i] = s;
 			i++;
 			tag = strtok(NULL, ",\n");
@@ -186,42 +138,44 @@ void load_supertagger(char *dir)
 {
 	char *hash_name = "supertag_hash";
 	char *supertags_file = malloc(strlen(dir) + strlen("predictions.txt") + 1);
-	char *word_ids_file = malloc(strlen(dir) + strlen("word_nums.txt") + 1);
+	char *spans_file = malloc(strlen(dir) + strlen("spans.txt") + 1);
 	strcpy(supertags_file, dir);
-	strcpy(word_ids_file, dir);
+	strcpy(spans_file, dir);
 	strcat(supertags_file, "predictions.txt");
-	strcat(word_ids_file, "word_nums.txt");
+	strcat(spans_file, "spans.txt");
 	struct supertagger *st = calloc(sizeof(struct supertagger), 1);
 	st->ntags = 0;
 	st->tag_hash = hash_new(hash_name);
-	// Initialize the word_ids and word2supertag arrays to -1:
+	// Initialize the spans to -1:
 	for (int i = 0; i < SIZE; i++)
 	{
 		for (int j = 0; j < SIZE; j++)
 		{
-			st->word_ids[i][j] = -1;
-			st->tag_positions[i][j] = -1;
+			st->spans[i][j].start = -1;
+			st->spans[i][j].end = -1;
 		}
 	}
 	load_supertags(supertags_file, st);
-	//load_word_ids(word_ids_file, st);
+	load_spans(spans_file, st);
 	the_supertagger = st;
 }
 
-// True if the supertagger has a supertag for the given token at the any position
-bool find_candidate(struct supertagger *st, int s_i, int position, char *tagname)
+char *find_supertag(struct supertagger *st, int s_i, struct lattice_edge *e)
 {
-	char *supertag = NULL;
-	int i;
-	for (i = 0; i < st->sentence_lengths[s_i]; i++)
+	if (e->token)
 	{
-		supertag = st->pretagged[s_i][i];
-		if (strcmp(tagname, supertag) == 0)
+		int e_start = e->token->cfrom;
+		int e_end = e->token->cto;
+		for (int i = 0; i < st->sentence_lengths[s_i]; i++)
 		{
-			return 1;
+			struct charspan span = st->spans[s_i][i];
+			if (e_start == span.start && e_end == span.end)
+			{
+				return st->pretagged[s_i][i];
+			}
 		}
 	}
-	return 0;
+	return NULL;
 }
 
 // lexical chart has an edge for each possible tag of each possible token
@@ -240,13 +194,8 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 	{
 		struct lattice_edge *e = ll->edges[i_true];
 		char *tagname = e->edge->lex->lextype->name;
-		int position = e->from->id;
-		char *supertag = NULL;
-		int supertag_idx = st->tag_positions[s_i][position];
-		if (supertag_idx != -1)
-		{
-			supertag = st->pretagged[s_i][supertag_idx];
-		}
+		// int position = e->from->id;
+		char *supertag = find_supertag(st, s_i, e);
 		// int edge_tag = st_lookup_tag(st, tagname, 1);
 		// int desired_tag = st_lookup_tag(st, supertag, 1);
 		// if (edge_tag == desired_tag)

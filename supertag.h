@@ -2,29 +2,41 @@
 
 // This simple module will receive the supertags from an external supertagger.
 // It will then go over the lattice and only keep tokens for which the lexical type matches
-// the one provided by the external supertagger. 
+// the one provided by the external supertagger.
 
-#include	"lattice-mapping.h"
+#include "lattice-mapping.h"
 
-#ifndef	SUPERTAG_H
-#define	SUPERTAG_H
+#ifndef SUPERTAG_H
+#define SUPERTAG_H
 
 #define SIZE 10240
 
+struct charspan
+{
+	int start;
+	int end;
+};
+
 struct supertagger
 {
-	int		ntags;
-	char	**tags;
+	int ntags;
+	char **tags;
 	int hashed_tags[SIZE][SIZE];
 	char *pretagged[SIZE][SIZE];
+	// char *pretagged_inputs[SIZE][SIZE];
+	// int word_ids[SIZE][SIZE];
+	// int tag_positions[SIZE][SIZE];
+	struct charspan spans[SIZE][SIZE];
 	int sentence_lengths[SIZE];
-	struct hash *tag_hash;				
+	struct hash *tag_hash;
 };
 
 void **load_supertags(char *filename, struct supertagger *st);
-void load_supertagger(char	*pretaggedpath);
-//struct supertagger	*load_supertagger(char	*pretaggedpath);
-//void	supertag_lattice(struct supertagger	*st, struct lattice	*ll, double	thresh);
-//void	free_supertagger(struct supertagger	*st);
-//int load_supertagging();
+void **load_word_ids(char *filename, struct supertagger *st);
+void **load_spans(char *filename, struct supertagger *st);
+void load_supertagger(char *pretaggedpath);
+// struct supertagger	*load_supertagger(char	*pretaggedpath);
+// void	supertag_lattice(struct supertagger	*st, struct lattice	*ll, double	thresh);
+// void	free_supertagger(struct supertagger	*st);
+// int load_supertagging();
 #endif
