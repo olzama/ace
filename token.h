@@ -1,33 +1,35 @@
-#ifndef	TOKEN_H
-#define	TOKEN_H
+#ifndef TOKEN_H
+#define TOKEN_H
 
-#include	"lattice-mapping.h"
+#include "lattice-mapping.h"
 
 struct token
 {
-	char	*string;
-	int	npostags;
+	char *string;
+	int npostags;
 	struct postag
 	{
-		char	*tag;
-		char	*prob;
-	}	*postags;
-	int	nids, *ids;
-	int		cfrom, cto;
-	struct dg	*dg;
+		char *tag;
+		char *prob;
+	} *postags;
+	int nids, *ids;
+	int cfrom, cto;
+	struct dg *dg;
 
-	struct ochart	*oc;
+	struct ochart *oc;
 
-	int	eid;	// edge id when we pretend tokens are edges
-	int	used;	// starts at 0 and is set to 1 when we reach it from a root
+	int eid;  // edge id when we pretend tokens are edges
+	int used; // starts at 0 and is set to 1 when we reach it from a root
 };
 
-struct lattice	*build_token_chart(int	nwords, char	**words, int	*cfrom, int	*cto);
-void	build_token_dag(struct token	*t);
-void	print_token_chart(struct lattice	*tc);
-char	*get_token_carg(struct token	*t);
+struct lattice *build_token_chart(int nwords, char **words, int *cfrom, int *cto);
+void build_token_dag(struct token *t);
+void print_token_chart(struct lattice *tc);
+char *get_token_carg(struct token *t);
 
 struct edge;
-int		install_tokens_in_le(struct edge	*le, struct token	**tokens);
+int install_tokens_in_le(struct edge *le, struct token **tokens);
+
+struct token *degenerate_token(int cfrom, int cto, char *orth); // OZ: copy only cfrom and cto, for supertagger purposes.
 
 #endif
