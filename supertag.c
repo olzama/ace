@@ -16,12 +16,12 @@
 #include "tdl.h"
 #include "freeze.h"
 
-#define DEBUG(x...) \
-	do              \
-	{               \
-		printf(x);  \
-	} while (0)
-// #define	DEBUG(x...)
+// #define DEBUG(x...) \
+// 	do              \
+// 	{               \
+// 		printf(x);  \
+// 	} while (0)
+#define DEBUG(x...)
 
 int enable_supertagging = 0;
 char *supertags_path = NULL;
@@ -199,18 +199,30 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 		// int edge_tag = st_lookup_tag(st, tagname, 1);
 		// int desired_tag = st_lookup_tag(st, supertag, 1);
 		// if (edge_tag == desired_tag)
-		if (supertag && strcmp(supertag, tagname) == 0)
+		if (!supertag)
 		{
-			DEBUG("KEEPING %s %s vtx [%d-%d]\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
+			DEBUG("KEEPING %s %s vtx [%d-%d]; NO supetag found\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
 			ll->edges[new_nedges++] = ll->edges[i_true];
-			// printf("Lexical chart:\n");
-			// print_lexical_chart(ll);
 		}
 		else
 		{
-			DEBUG("DISCARDING %s\n", tagname);
-			// printf("Lexical chart:\n");
-			// print_lexical_chart(ll);
+			bool whitelist = 0;
+			whitelist = strcmp(e->edge->lex->word, "dqleft_pct") == 0 || 
+				strcmp(e->edge->lex->word, "dqright_pct") == 0 || 
+				strcmp(supertag, "n_-_pn-gen_le") == 0;
+			if ((strcmp(supertag, tagname) == 0) || whitelist)
+			{
+				DEBUG("KEEPING %s %s vtx [%d-%d]\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
+				ll->edges[new_nedges++] = ll->edges[i_true];
+				// printf("Lexical chart:\n");
+				// print_lexical_chart(ll);
+			}
+			else
+			{
+				DEBUG("DISCARDING %s\n", tagname);
+				// printf("Lexical chart:\n");
+				// print_lexical_chart(ll);
+			}
 		}
 	}
 	ll->nedges = new_nedges;

@@ -538,8 +538,8 @@ int parse_with_token_chart(struct lattice *token_chart, clock_t start, int sent_
 		start_and_alloc_profiler(&lexical_lookup_profiler, "lexical lookup", parse_profiler, token_mapping_profiler);
 	// do lexical lookup
 	struct lattice *lexical_chart = lexical_lookup_into_chart(token_chart);
-	//printf("Built a lexical chart\n");
-	//print_lexical_chart(lexical_chart);
+	// printf("Built a lexical chart\n");
+	// print_lexical_chart(lexical_chart);
 
 	if (!lexical_chart)
 	{
@@ -615,8 +615,8 @@ int parse_with_token_chart(struct lattice *token_chart, clock_t start, int sent_
 	extern char *supertags_path;
 	if (the_supertagger && enable_supertagging)
 	{
-		printf("Lexical chart before supertagging:\n");
-		print_lexical_chart(lexical_chart);
+		//printf("Lexical chart before supertagging:\n");
+		//print_lexical_chart(lexical_chart);
 		supertag_lattice(the_supertagger, lexical_chart, sent_num);
 		// printf("Lexical chart after supertagging:\n");
 		// print_lexical_chart(lexical_chart);
