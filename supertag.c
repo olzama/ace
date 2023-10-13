@@ -16,12 +16,12 @@
 #include "tdl.h"
 #include "freeze.h"
 
-// #define DEBUG(x...) \
-// 	do              \
-// 	{               \
-// 		printf(x);  \
-// 	} while (0)
-#define DEBUG(x...)
+#define DEBUG(x...) \
+	do              \
+	{               \
+		printf(x);  \
+	} while (0)
+//#define DEBUG(x...)
 
 int enable_supertagging = 0;
 char *supertags_path = NULL;
@@ -153,6 +153,9 @@ void load_supertagger(char *dir)
 		{
 			st->spans[i][j].start = -1;
 			st->spans[i][j].end = -1;
+			st->tags_found[i][j].from = -1;
+			st->tags_found[i][j].to = -1;
+			st->tags_found[i][j].supertag = NULL;
 		}
 	}
 	load_supertags(supertags_file, st);
@@ -189,23 +192,27 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 {
 	// sort_lattice(ll);
 	int new_nedges = 0;
+	int found_tags = 0;
 	int i_true;
 	for (i_true = 0; i_true < ll->nedges; i_true++)
 	{
 		struct lattice_edge *e = ll->edges[i_true];
 		char *tagname = e->edge->lex->lextype->name;
-		// int position = e->from->id;
+		DEBUG("Processing edge %d-%d %s\n", e->edge->from, e->edge->to, tagname);
+		// create a string from the e->edge->from and e->edge->to with a dash in between:
+		char *vertex = malloc(sizeof(char) * 100);
+		sprintf(vertex, "%d-%d", e->edge->from, e->edge->to);
+		st->tags_found[s_i][found_tags].vertex = vertex;
 		char *supertag = find_supertag(st, s_i, e);
-		// int edge_tag = st_lookup_tag(st, tagname, 1);
-		// int desired_tag = st_lookup_tag(st, supertag, 1);
-		// if (edge_tag == desired_tag)
 		if (!supertag)
 		{
 			DEBUG("KEEPING %s %s vtx [%d-%d]; NO supetag found\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
 			ll->edges[new_nedges++] = ll->edges[i_true];
+			st->tags_found[s_i][found_tags].supertag = NULL;
 		}
 		else
 		{
+			DEBUG("Found supertag %s for %s\n", supertag, e->edge->lex->word);
 			bool whitelist = 0;
 			whitelist = strcmp(e->edge->lex->word, "dqleft_pct") == 0 || 
 				strcmp(e->edge->lex->word, "dqright_pct") == 0 || 
@@ -214,6 +221,8 @@ void supertag_lattice(struct supertagger *st, struct lattice *ll, int s_i)
 			{
 				DEBUG("KEEPING %s %s vtx [%d-%d]\n", tagname, e->edge->lex->word, e->edge->from, e->edge->to);
 				ll->edges[new_nedges++] = ll->edges[i_true];
+				st->tags_found[s_i][found_tags].supertag = supertag;
+
 				// printf("Lexical chart:\n");
 				// print_lexical_chart(ll);
 			}

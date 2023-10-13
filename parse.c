@@ -21,6 +21,13 @@
 #include "supertag.h"
 #include "ubertag.h"
 
+#define DEBUG(x...) \
+	do              \
+	{               \
+		printf(x);  \
+	} while (0)
+//#define DEBUG(x...)
+
 double ubertagging_threshold = 0.0001;
 int give_up_threshold = 70;
 
@@ -483,6 +490,7 @@ static int chart_setup_timer = -1;
 // OZ: Adding sent_num for the oracle supertagger setup where the supertagger simply looks up oracle tags for each sentence from a file
 int parse(int nwords, char **words, int *cfrom, int *cto, char *sentence, int sent_num)
 {
+	DEBUG("Parsing (%s)\n", sentence);
 	clock_t start = clock();
 
 	if (chart_setup_timer == -1)
@@ -538,8 +546,8 @@ int parse_with_token_chart(struct lattice *token_chart, clock_t start, int sent_
 		start_and_alloc_profiler(&lexical_lookup_profiler, "lexical lookup", parse_profiler, token_mapping_profiler);
 	// do lexical lookup
 	struct lattice *lexical_chart = lexical_lookup_into_chart(token_chart);
-	// printf("Built a lexical chart\n");
-	// print_lexical_chart(lexical_chart);
+	//DEBUG("Built a lexical chart\n");
+	//DEBUG(print_lexical_chart(lexical_chart));
 
 	if (!lexical_chart)
 	{
@@ -618,8 +626,8 @@ int parse_with_token_chart(struct lattice *token_chart, clock_t start, int sent_
 		//printf("Lexical chart before supertagging:\n");
 		//print_lexical_chart(lexical_chart);
 		supertag_lattice(the_supertagger, lexical_chart, sent_num);
-		// printf("Lexical chart after supertagging:\n");
-		// print_lexical_chart(lexical_chart);
+		DEBUG("Lexical chart after supertagging:\n");
+		print_lexical_chart(lexical_chart);
 	}
 	if (g_profiling)
 		start_and_alloc_profiler(&ubertagging_profiler, "übertagging", parse_profiler, lexical_filtering_profiler);

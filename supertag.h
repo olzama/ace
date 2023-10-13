@@ -17,16 +17,19 @@ struct charspan
 	int end;
 };
 
+struct edgetag {
+    char* vertex;
+    char* supertag;
+};
+
 struct supertagger
 {
 	int ntags;
 	char **tags;
 	int hashed_tags[SIZE][SIZE];
 	char *pretagged[SIZE][SIZE];
-	// char *pretagged_inputs[SIZE][SIZE];
-	// int word_ids[SIZE][SIZE];
-	// int tag_positions[SIZE][SIZE];
 	struct charspan spans[SIZE][SIZE];
+	struct edgetag tags_found[SIZE][SIZE];
 	int sentence_lengths[SIZE];
 	struct hash *tag_hash;
 };
@@ -35,8 +38,4 @@ void **load_supertags(char *filename, struct supertagger *st);
 void **load_word_ids(char *filename, struct supertagger *st);
 void **load_spans(char *filename, struct supertagger *st);
 void load_supertagger(char *pretaggedpath);
-// struct supertagger	*load_supertagger(char	*pretaggedpath);
-// void	supertag_lattice(struct supertagger	*st, struct lattice	*ll, double	thresh);
-// void	free_supertagger(struct supertagger	*st);
-// int load_supertagging();
 #endif
